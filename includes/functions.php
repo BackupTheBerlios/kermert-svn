@@ -12,6 +12,11 @@ function getImageName()
 	global $kermert;
 	return $kermert->imageslist->f('headline');
 }
+function getImageFileName()
+{
+	global $kermert;
+	return $kermert->imageslist->f('image');
+}
 
 function getImageThumb()
 {
@@ -22,7 +27,7 @@ function getImageThumb()
 function getImageBody()
 {
 	global $kermert;
-	echo $kermert->imageslist->f('body');
+	return $kermert->imageslist->f('body');
 }
 
 function getImageId()

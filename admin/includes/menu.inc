@@ -3,7 +3,7 @@
 
 <h3>Navigation</h3>
 <ul>
-	<li><a href="/">Accueil</a></li>
+	<li><a href="./">Accueil</a></li>
 	<li><a href="<?php echo kmSettings()?>">Site public</a>
 </ul>
 
@@ -21,6 +21,7 @@
 <h3>Configuration</h3>
 <ul>
 	<li><a href="./config.php">Paramètres</a></li>
+	<li><a href="./config.php?op=users">Utilisateurs</a></li>
 	<li><a href="./config.php?op=themes">Thèmes</a></li>
 	<li><a href="./config.php?op=info">Informations</a></li>
 </ul>
@@ -28,6 +29,6 @@
 
 <h3>&nbsp;</h3>
 <ul>
-	<li><a href="logout.php">Déconnexion</a></li>
+	<li><a href="./config.php?logout=yes">Déconnexion</a></li>
 </ul>
 </div>

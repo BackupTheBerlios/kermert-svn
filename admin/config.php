@@ -103,6 +103,8 @@ if($op=='info') {
 		<?php echo form::field('app_url',40,40,$params['km_appurl'])?></p>
 		<p><label for="images_dir">Répertoire des images:</label><br/>
 		<?php echo form::field('images_dir',40,40,$params['km_imagesdir'])?></p>
+		<p><label for="thumb_dir">Répertoire des miniatures:</label><br/>
+		<?php echo form::field('thumb_dir',40,40,$params['km_thumbsdir'])?></p>
 	</fieldset><br/>
 	<fieldset>
 		<legend>Base de données</legend>
