@@ -27,39 +27,8 @@ if($op=='image')
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
+<script type="text/javascript" src="./includes/tools.js"></script>
 <title>Administration</title>
-<script language="javascript" type="text/javascript">
-<!--
-function openClose(id,mode)
-{
-	if(document.getElementById) {
-		element = document.getElementById(id);
-		img = document.getElementById('img_' + id);
-	} else if(document.all) {
-		element = document.all[id];
-		img = document.all['img_' + id];
-	} else return;
-
-	if(element.style) {
-		if(mode == 0) {
-			if(element.style.display == 'block' ) {
-				element.style.display = 'none';
-				img.src = 'images/plus.png';
-			} else {
-				element.style.display = 'block';
-				img.src = 'images/moins.png';
-			}
-		} else if(mode == 1) {
-			element.style.display = 'block';
-			img.src = 'images/moins.png';
-		} else if(mode == -1) {
-			element.style.display = 'none';
-			img.src = 'images/plus.png';
-		}
-	}
-}
--->
-</script>
 </head>
 <body>
 <table width="100%" class="Framework" cellspacing="0" cellpadding="0">
@@ -94,7 +63,7 @@ function openClose(id,mode)
 
 <div class="post">
 <h2>Images</h2>
-<p class="modified"><b>&gt; <?=subtitle('images.'.$op)?></b></p>
+<p class="modified"><b>&middot; <?=subtitle('images.'.$op)?></b></p>
 <p>
 <?php
 if($op=='image') {
@@ -136,7 +105,7 @@ if($op=='image') {
 		<?php } ?>
 	</fieldset>
 </form>
-<? }else{ ?>
+<? }elseif($op=='list'){ ?>
 <?php $kermert->loadImagesList('all',$offset);?>
 
 <?php while(!$kermert->EOF() && $kermert->getCurrIdx() <= $offset+$list_step) {?>
@@ -150,7 +119,15 @@ if($op=='image') {
 </div>
 </div>
 <?php $kermert->moveNext();} ?>
-
+<?php }elseif($op=='operations'){ ?>
+<ul>
+	<li><a href="#" onclick="javascript:operations('actionframe',1);">Regénérer toutes les miniatures</a></li>
+	<li><a href="#" onclick="javascript:openClose('actionframe',1);">Vérifier la présence de toutes les miniatures</a></li>
+</ul>
+<div id="actionframe" style="display:none;">
+<iframe id="actioncontent" width="98%" src="./blank.html"></iframe>
+<div class="imagethumbright"><a href="javascript:void(0);" onclick="javascript:openClose('actionframe',-1);">Cacher la fenêtre</a></div>
+</div>
 <?php } ?>
 </p>
 </div>

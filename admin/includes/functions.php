@@ -20,8 +20,10 @@ function subtitle($code)
 				'config.params'=>'Paramètres',
 				'config.themes'=>'Thèmes',
 				'config.info'=>'Informations',
+				'stats.summary'=>'Résumé',
 				'images.image'=>'Nouvelle image',
-				'images.list'=>'Gestion des images'
+				'images.list'=>'Gestion des images',
+				'images.operations'=>'Opérations sur les images'
 				);
 	
 	return($codes[$code]);
