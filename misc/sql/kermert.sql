@@ -1,20 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 2.6.1
--- http://www.phpmyadmin.net
--- 
--- Serveur: localhost
--- Généré le : Mercredi 06 Avril 2005 à 10:25
--- Version du serveur: 4.1.9
--- Version de PHP: 4.3.10
--- 
--- Base de données: `kermert`
--- 
-
--- --------------------------------------------------------
-
--- 
+﻿--
 -- Structure de la table `pixelpost_catassoc`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_catassoc` (
   `id` int(11) NOT NULL auto_increment,
@@ -23,9 +9,9 @@ CREATE TABLE IF NOT EXISTS `pixelpost_catassoc` (
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=819 ;
 
--- 
+--
 -- Contenu de la table `pixelpost_catassoc`
--- 
+--
 
 INSERT INTO `pixelpost_catassoc` (`id`, `cat_id`, `image_id`) VALUES (772, 4, 8);
 INSERT INTO `pixelpost_catassoc` (`id`, `cat_id`, `image_id`) VALUES (773, 1, 9);
@@ -77,9 +63,9 @@ INSERT INTO `pixelpost_catassoc` (`id`, `cat_id`, `image_id`) VALUES (818, 3, 60
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Structure de la table `pixelpost_categories`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_categories` (
   `id` int(11) NOT NULL auto_increment,
@@ -87,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `pixelpost_categories` (
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
--- 
+--
 -- Contenu de la table `pixelpost_categories`
--- 
+--
 
 INSERT INTO `pixelpost_categories` (`id`, `name`) VALUES (1, 'General');
 INSERT INTO `pixelpost_categories` (`id`, `name`) VALUES (2, 'Urban');
@@ -108,9 +94,9 @@ INSERT INTO `pixelpost_categories` (`id`, `name`) VALUES (14, 'Food&Vegs');
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Structure de la table `pixelpost_comments`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_comments` (
   `id` int(11) NOT NULL auto_increment,
@@ -123,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `pixelpost_comments` (
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=389 ;
 
--- 
+--
 -- Contenu de la table `pixelpost_comments`
--- 
+--
 
 INSERT INTO `pixelpost_comments` (`id`, `parent_id`, `datetime`, `ip`, `message`, `name`, `url`) VALUES (350, 11, '2004-08-14 10:59:54', '83.157.70.45', 'Very proud of that one :)\n\nIf you like it, go and see how marvellous is the shot of Sirio : http://food4eyes.esoul.it/archives/2004_04_20.html\n(was taken on my birthday!!)', 'Alecska', 'http://aspirant-artiste.fr.st/');
 INSERT INTO `pixelpost_comments` (`id`, `parent_id`, `datetime`, `ip`, `message`, `name`, `url`) VALUES (351, 16, '2004-08-16 21:18:10', '212.27.40.157', '<pingback />[&#8230;] eral 	in the hands &#8212; Alecska @ 23:18 pm  	 	 			Ce soir, j&#8217;ai bien travaillé. <a href="http://aspirantartiste.free.fr/photoblog/index.php?p=16">Voilà le résultat </a>. 	A partir d&#8217;une toute petite fleur tombée sur mon fauteuil ? [&#8230;]', '@spirant @rtiste web', 'http://aspirantartiste.free.fr/weblog/in');
@@ -169,9 +155,9 @@ INSERT INTO `pixelpost_comments` (`id`, `parent_id`, `datetime`, `ip`, `message`
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Structure de la table `pixelpost_config`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_config` (
   `admin` varchar(20) NOT NULL default '',
@@ -192,17 +178,17 @@ CREATE TABLE IF NOT EXISTS `pixelpost_config` (
   `dateformat` varchar(30) NOT NULL default ''
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- 
+--
 -- Contenu de la table `pixelpost_config`
--- 
+--
 
 INSERT INTO `pixelpost_config` (`admin`, `password`, `email`, `commentemail`, `template`, `imagepath`, `siteurl`, `sitetitle`, `langfile`, `calendar`, `crop`, `thumbwidth`, `thumbheight`, `thumbnumber`, `compression`, `dateformat`) VALUES ('admin', 'cGl2b2luZQ==', '', 'no', 'nack', '/data/www/net/t/r/kermert.net/d/o/pprod/htdocs/pixelpost/images/', 'http://pprod.kermert.net/pixelpost/', 'pixelpost', 'english', 'No Calendar', 'no', 100, 75, 5, 75, 'H:i d/m/Y');
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Structure de la table `pixelpost_images`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_images` (
   `id` int(11) NOT NULL auto_increment,
@@ -214,9 +200,9 @@ CREATE TABLE IF NOT EXISTS `pixelpost_images` (
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
 
--- 
+--
 -- Contenu de la table `pixelpost_images`
--- 
+--
 
 INSERT INTO `pixelpost_images` (`id`, `datetime`, `headline`, `body`, `image`, `category`) VALUES (15, '2004-08-14 11:54:27', 'Skin of my &#8220;Baby&#8221;', 'This is Robert, my new external hard dirve :)\nIsn&#8217;t he cute ? ;)', '081404robert_surface.JPG', '');
 INSERT INTO `pixelpost_images` (`id`, `datetime`, `headline`, `body`, `image`, `category`) VALUES (9, '2004-08-12 21:50:05', 'As time goes by', '', '081204verdure_p.jpg', '');
@@ -267,9 +253,9 @@ INSERT INTO `pixelpost_images` (`id`, `datetime`, `headline`, `body`, `image`, `
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Structure de la table `pixelpost_users`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_users` (
   `username` varchar(30) NOT NULL default '',
@@ -282,17 +268,17 @@ CREATE TABLE IF NOT EXISTS `pixelpost_users` (
   KEY `uniqid` (`uniqid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- 
+--
 -- Contenu de la table `pixelpost_users`
--- 
+--
 
 INSERT INTO `pixelpost_users` (`username`, `password`, `nickname`, `userlevel`, `email`, `uniqid`) VALUES ('admin', '4dc9d92fed2dc7442fd0a61f4f56b89a', 'Pivwan', 10, 'pivwan@pivwan.net', 'f61408eb882c500780df0fc09e519421');
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Structure de la table `pixelpost_visitors`
--- 
+--
 
 CREATE TABLE IF NOT EXISTS `pixelpost_visitors` (
   `id` int(11) NOT NULL auto_increment,
@@ -305,9 +291,9 @@ CREATE TABLE IF NOT EXISTS `pixelpost_visitors` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
--- 
+--
 -- Contenu de la table `pixelpost_visitors`
--- 
+--
 
 INSERT INTO `pixelpost_visitors` (`id`, `datetime`, `host`, `referer`, `ua`, `ip`, `ruri`) VALUES (1, '2005-03-19 14:10:38', 'pprod.kermert.net', '', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr-FR; rv:1.7.6) Gecko/20050226 Firefox/1.0.1', '82.216.195.235', '/pixelpost/');
 INSERT INTO `pixelpost_visitors` (`id`, `datetime`, `host`, `referer`, `ua`, `ip`, `ruri`) VALUES (2, '2005-03-19 15:02:29', 'pprod.kermert.net', '', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr-FR; rv:1.7.6) Gecko/20050226 Firefox/1.0.1', '83.153.51.76', '/pixelpost/index.php');
