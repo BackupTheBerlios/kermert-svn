@@ -1,0 +1,317 @@
+<!-- start -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title><SITE_TITLE></title>
+
+<style type="text/css">
+body {	
+	background:#f5f5f5;
+	margin:10px;
+	padding:0px;
+	text-align:center;
+	font-size:10px;
+	color:#444;
+	}
+.td_calendar_days_vz {
+	padding:1px;
+	text-align:center;
+	border-top:0px solid #999;
+	border-bottom:1px solid #999;
+	border-right:0px;
+	border-left:0px;
+	background:#fff;
+	color:#999;
+	}
+.td_calendar_days_vz:hover {
+    background:#444;
+    }
+.td_calendar_days {
+	padding:1px;
+	text-align:center;
+	border-top:1px solid #999;
+	border-bottom:1px solid #999;
+	border-right:0px;
+	border-left:0px;
+	background:#fff;
+	color:#999;
+	}
+.td_calendar_days:hover {
+    background:#444;
+    }
+.td_calendar_navi_vz {
+	border-top:0px;
+	border-bottom:1px solid #999;
+	border-right:0px;
+	border-left:0px;
+	text-align:center;
+	letter-spacing:1px;
+	word-spacing:5px;
+	}
+.td_calendar_navi_vz a {
+    text-decoration:none;
+    color:#444;
+    }
+.td_calendar_navi {
+	border-top:0px;
+	border-bottom:1px solid #999;
+	border-right:0px;
+	border-left:0px;
+	text-align:right;
+	letter-spacing:1px;
+	word-spacing:5px;
+	}
+.td_calendar_navi a {
+    text-decoration:none;
+    color:#444;
+    }
+.td_calendar_days_imagefound {
+	padding:1px;
+	text-align:center;
+	border-top:1px dotted #999;
+	border-bottom:1px dotted #999;
+	border-left:1px dotted #999;
+	border-right:1px dotted #999;
+	background:#f5f5f5;
+	}
+.td_calendar_days_imagefound:hover {
+    border-top:1px solid #999;
+	border-bottom:1px solid #999;
+	border-left:1px solid #999;
+	border-right:1px solid #999;
+	background:#666;
+    }
+.td_calendar_days_imagefound a {
+    text-decoration:none;
+    color:#444;
+    }
+.td_calendar_days_imagefound a:hover {
+    text-decoration:none;
+    color:#fff;
+    }
+.table_calendar {
+    font-family:Helvetica, verdana, sans-serif;
+	font-size:10px;
+	padding:0px;
+	margin:0px;
+	width:600px;
+	border-top:0px;
+	border-bottom:0px;
+	border-right:0px;
+	border-left:0px;
+	}
+.table_calendar_vz {
+    font-family:Helvetica, verdana, sans-serif;
+	font-size:10px;
+	padding:0px;
+	margin:0px;
+	width:200px;
+	border-top:0px;
+	border-bottom:0px;
+	border-right:0px;
+	border-left:0px;
+	}
+.headline {
+    font-size:22px;
+    font-weight:bold;
+    font-family:Helvetica, verdana, sans-serif;
+    color:#444;
+    letter-spacing:-1px;
+    }
+.thumbnails {
+    padding:5px;
+    border:0px;
+    }
+.current_thumbnail {
+    padding:5px;
+    border:1px dotted #666;
+    }
+#wrapper {
+	margin:0px auto;
+	padding-top:0px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom:0px;
+	width:610px;
+	text-align:left;
+	}
+#calendar {
+    width:590px;
+    padding:10px;
+    font-family:Helvetica, verdana, sans-serif;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:-1px;
+    }
+#logo {
+    width:590px;
+    padding:10px;
+    font-family:Helvetica, verdana, sans-serif;
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:-1px;
+    }
+#image {
+    padding:5px;
+    background:#fff;
+    border:1px solid #333;
+    }
+#image_info {
+    width:590px;
+    padding:10px;
+    display:block;
+    font-size:10px;
+    background:#fff;
+    border-left:1px solid #999;
+    border-right:1px solid #999;
+    border-top:0px;
+    border-bottom:1px dotted #999;
+    }
+#image_info:hover {
+    background:#f5f5f5;
+    }
+#image_navigation {
+    width:590px;
+    padding:10px;
+    background:#fff;
+    font-size:10px;
+    border-left:1px solid #999;
+    border-right:1px solid #999;
+    border-top:0px;
+    border-bottom:1px solid #999;
+    }
+#image_navigation:hover {
+    background:#f5f5f5;
+    }
+#add_comment {
+    width:590px;
+    padding:10px;
+    background:#f5f5f5;
+    font-size:10px;
+    border-left:1px solid #999;
+    border-right:1px solid #999;
+    border-top:0px;
+    border-bottom:1px solid #999;
+    }
+.input {
+    width:100%;
+	font-size:10px;
+	font-weight:bold;
+	border:1px solid #444;
+	background-color:#f5f5f5;
+	color:#444;
+    }
+#add_comment textarea {
+	width:100%;
+	height:50px;
+	font-size:10px;
+	font-weight:bold;
+	border:1px solid #444;
+	background-color:#f5f5f5;
+	color:#444;
+	}
+#comments {
+    width:590px;
+    padding:10px;
+    background:#fff;
+    font-size:10px;
+    border-left:1px solid #999;
+    border-right:1px solid #999;
+    border-top:0px;
+    border-bottom:1px solid #999;
+    }
+#comments ul {
+	list-style-type:none;
+	margin:0px;
+	padding:10px;
+	}
+#comments li {
+	display:block;
+	margin:0px;
+	color:#444;
+	text-decoration:none;
+	padding:3px;
+	}
+#comments li a {
+	color:#444;
+	text-decoration:none;
+	}
+#comments li:hover {
+	background:#f5f5f5;
+	}
+#comments li a:hover {
+	background:#f5f5f5;
+	}
+</style>
+<script language='javascript' type='text/javascript'>
+<!-- BEGIN
+function flip(rid)
+{
+    current=(document.getElementById(rid).style.display == 'none') ? 'block' : 'none';
+    document.getElementById(rid).style.display = current;
+}
+// End -->
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="calendar">
+<SITE_CALENDAR>
+</div>
+<div id="logo">
+<SITE_TITLE>
+</div>
+<a href="index.php?showimage=<IMAGE_PREVIOUS_ID>"><img id="image" src="images/<IMAGE_NAME>" alt="<IMAGE_TITLE>" title="<IMAGE_PREVIOUS_TITLE>" /></a>
+
+<div id="image_info">
+<span class='headline'><IMAGE_TITLE></span> 
+<IMAGE_NOTES>
+
+<IMAGE_DATETIME> - <IMAGE_COMMENTS_NUMBER> comments. Category: <IMAGE_CATEGORY><p />
+
+<IMAGE_THUMBNAIL_ROW>
+
+</div>
+
+<div id="image_navigation">
+<IMAGE_PREVIOUS_LINK>   
+<a href="index.php">Current</a>  
+<IMAGE_NEXT_LINK>
+&nbsp;&nbsp;&nbsp;
+<SITE_PHOTONUMBER> photos | <SITE_VISITORNUMBER> visitors
+&nbsp;&nbsp;&nbsp;
+<a href="<SITE_REFLINK>">Referers</a>
+&nbsp;&nbsp;&nbsp;
+<a href="?showimage=<IMAGE_ID>">Permalink</a>
+&nbsp;&nbsp;&nbsp;
+<a href="<SITE_BROWSELINK>">Browse Archive</a>
+</div>
+<div id="comments">
+<a href='#' onclick="flip('add_comment'); return false;">Add Comment</a><p />
+<IMAGE_COMMENTS>
+</div>
+<div id="add_comment">
+<script language='javascript' type='text/javascript'>flip('add_comment');</script>
+	<form method='post' action='index.php?x=save_comment' name='commentform' >
+	Message:<br />
+	<textarea name='message' rows='2' cols='4'></textarea><p />
+	Name:<br />
+	<input type='text' name='name' class='input' value='<VINFO_NAME>' /><p />
+	Website URL, if any: <br />
+	<input type='text' name='url' class='input' value='<VINFO_URL>' /><p />
+	
+	<input type='checkbox' value='set' name='vcookie' /> Save User Info<p />
+	
+	<input type='submit' value='Add' />
+	<input type='hidden' name='parent_id' value='<IMAGE_ID>' />
+	</form>
+
+</div>
+</div>
+<a href="http://validator.w3.org/check/referer">Valid XHTML</a> | 
+<a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a> |
+<SITE_RSS_LINK>
+</body>
+</html>
+<!-- end -->

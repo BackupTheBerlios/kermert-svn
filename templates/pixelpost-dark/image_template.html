@@ -1,0 +1,91 @@
+<!-- start -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title><SITE_TITLE></title>
+
+<style type="text/css">
+body {	
+	background:#000;
+	margin:10px;
+	padding:0px;
+	text-align:center;
+	font-size:10px;
+	font-family:Verdana, Helvetica, sans-serif;
+	color:#444;
+	}
+#wrapper {
+	margin:0px auto;
+	padding-top:0px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom:0px;
+	width:610px;
+	text-align:left;
+	}
+#image {
+    padding:5px;
+    background:#111;
+    border:1px solid #333;
+    }
+#image_info {
+    width:590px;
+    padding:10px;
+    display:block;
+    font-size:10px;
+    color:#999;
+    border:0px;
+    }
+#image_info a {
+    text-decoration:none;
+    color:#999;
+    }
+#header {
+    position:absolute;
+    top:0px;
+    right:0px;
+    float:right;
+    margin:0px;
+    padding:10px;
+    display:block;
+    border-top:0px;
+    border-right:0px;
+    border-left:0px;
+    border-bottom:0px dotted #111;
+    }
+</style>
+<script language='javascript' type='text/javascript'>
+<!-- BEGIN
+function flip(rid)
+{
+    current=(document.getElementById(rid).style.display == 'none') ? 'block' : 'none';
+    document.getElementById(rid).style.display = current;
+}
+// End -->
+</script>
+</head>
+<body>
+<div id="header">
+<SITE_TITLE> :: <SITE_PHOTONUMBER> photos posted :: <SITE_VISITORNUMBER> visitors
+</div>
+<p /><br />
+<div id="wrapper">
+<div id="image_info">
+<IMAGE_PREVIOUS_LINK> :: <a href="index.php">Current</a> :: <IMAGE_NEXT_LINK>
+</div>
+<a href="index.php?showimage=<IMAGE_PREVIOUS_ID>"><img id="image" src="images/<IMAGE_NAME>" alt="<IMAGE_TITLE>" title="<IMAGE_PREVIOUS_TITLE>" /></a>
+
+<div id="image_info">
+<b><IMAGE_TITLE></b> &raquo; <i><IMAGE_NOTES><br />
+<COMMENT_POPUP> (<IMAGE_COMMENTS_NUMBER>)
+</i>
+<p />
+<EXIF_CAMERA_MODEL><br />
+<EXIF_EXPOSURE_TIME> / <EXIF_APERTURE> / <EXIF_FOCAL_LENGTH> mm / <EXIF_FLASH>
+</div>
+</div>
+
+</body>
+</html>
+<!-- end -->
