@@ -1,4 +1,24 @@
 <?php
+# ***** BEGIN LICENSE BLOCK *****
+# This file is part of Kermert.
+# Copyright (c) 2005 Pierre-Yves Gillier and contributors. All rights
+# reserved.
+#
+# Kermert is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Kermert is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Kermert; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# ***** END LICENSE BLOCK *****
 
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.wiki2xhtml.php');
@@ -73,6 +93,8 @@ if($op=='image') {
 		<legend><?php echo $page_strings['action_title']?></legend>
 		<p><label for="image_title">Titre:</label><br/>
 		<?php echo form::field('image_title',50,50,getImagename());?></p>
+		<p><label for="content_mode">Format:</label><br/>
+		<?php echo form::combo('content_mode',array('Wiki'=>'wiki','HTML'=>'redim'),getImageMode())?></p>
 		<p><label for="image_content">Texte:</label><br/>
 		<?php echo form::textarea('image_content',100,10,getImageBody());?></p>
 	</fieldset>
@@ -121,11 +143,11 @@ if($op=='image') {
 <?php $kermert->moveNext();} ?>
 <?php }elseif($op=='operations'){ ?>
 <ul>
-	<li><a href="#" onclick="javascript:operations('actionframe',1);">Regénérer toutes les miniatures</a></li>
-	<li><a href="#" onclick="javascript:openClose('actionframe',1);">Vérifier la présence de toutes les miniatures</a></li>
+	<li><a href="#" onclick="javascript:operations('regenerate',1);">Regénérer toutes les miniatures</a></li>
+	<li><a href="#" onclick="javascript:operations('checkthumb',1);">Vérifier la présence de toutes les miniatures</a></li>
 </ul>
 <div id="actionframe" style="display:none;">
-<iframe id="actioncontent" width="98%" src="./blank.html"></iframe>
+<iframe id="actioncontent" name="actioniframe" width="98%"></iframe>
 <div class="imagethumbright"><a href="javascript:void(0);" onclick="javascript:openClose('actionframe',-1);">Cacher la fenêtre</a></div>
 </div>
 <?php } ?>

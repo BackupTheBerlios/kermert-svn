@@ -2,11 +2,11 @@
 
 /**
  * Displays kermert version.
- * 
+ *
  * @param: none
  * @return: version number extracted from VERSION file located at application's root
  */
- 
+
 function getAppVersion()
 {
 	$version_file = dirname(__FILE__).'/../../VERSION';
@@ -21,11 +21,12 @@ function subtitle($code)
 				'config.themes'=>'Thèmes',
 				'config.info'=>'Informations',
 				'stats.summary'=>'Résumé',
+				'stats.detail'=>'Détails des visiteurs',
 				'images.image'=>'Nouvelle image',
 				'images.list'=>'Gestion des images',
 				'images.operations'=>'Opérations sur les images'
 				);
-	
+
 	return($codes[$code]);
 }
 
@@ -35,5 +36,5 @@ function OuiNon($bool){
   }else{
    return "<font color=\"#ff0000\"> Non</font>";
   }
-} 
+}
 ?>
