@@ -70,33 +70,7 @@ if($op=='params')
 <tr>
 
 <td rowspan="2" class="LeftCell">
-<div id="leftmenu">
-
-
-<h3>Navigation</h3>
-<ul>
-	<li><a href="/">Accueil</a></li>
-	<li><a href="<?php kmSettings('url')?>">Site public</a>
-</ul>
-
-<h3>Images</h3>
-<ul>
-	<li><a href="./images.php">Nouvelle image</a></li>
-	<li><a href="./images.php?op=list">Gestion des images</a></li>
-	<li><a href="./images.php?op=operations">Opérations</a></li>
-</ul>
-<h3>Configuration</h3>
-<ul>
-	<li><a href="./config.php">Paramètres</a></li>
-	<li><a href="./config.php?op=themes">Thèmes</a></li>
-	<li><a href="./config.php?op=info">Informations</a></li>
-</ul>
-
-
-<h3>&nbsp;</h3>
-<ul>
-	<li><a href="logout.php">Déconnexion</a></li>
-</ul>
+<? include_once(dirname(__FILE__).'/includes/menu.inc');?>
 </td>
 
 <td class="MainCell">
@@ -155,6 +129,8 @@ if($op=='info') {
 		<?php echo form::field('thumb_width',3,3,$params['km_thumbwidth'])?> *
 		<?php echo form::field('thumb_height',3,3,$params['km_thumbheight'])?> pixels
 		</p>
+		<p><label for="graphic_thumbtype">Type de miniatures:</label><br/>
+		<?php echo form::combo('graphic_thumbtype',array('Echantillon'=>'crop','Redimensionnement'=>'redim'),$params['km_graphicthumbtype'])?></p>
 	</fieldset><br/>
 	<fieldset>
 		<legend>Actions</legend>

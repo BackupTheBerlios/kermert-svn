@@ -3,15 +3,20 @@
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.wiki2xhtml.php');
 
+$list_step = 9;
+
 $op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'image';
 $id = (!empty($_REQUEST['id'])) ? $_REQUEST['id'] : '';
 $offset = (!empty($_REQUEST['offset'])) ? $_REQUEST['offset'] : 0;
+
+$page_strings = array('action_title'=>'Nouvelle image','action_button'=>'Enregistrer');
+
 $action_title = 'Nouvelle image';
 if($op=='image')
 {
 	if($id!='')
 	{
-		$action_title = 'Modifier l\'image';
+		$page_strings = array('action_title'=>'Modifier l\'image','action_button'=>'Modifier');
 		$kermert->loadSingleImage($id);
 	}
 }
@@ -34,7 +39,7 @@ function openClose(id,mode)
 		element = document.all[id];
 		img = document.all['img_' + id];
 	} else return;
-	
+
 	if(element.style) {
 		if(mode == 0) {
 			if(element.style.display == 'block' ) {
@@ -80,33 +85,7 @@ function openClose(id,mode)
 <tr>
 
 <td rowspan="2" class="LeftCell">
-<div id="leftmenu">
-
-
-<h3>Navigation</h3>
-<ul>
-	<li><a href="/">Accueil</a></li>
-	<li><a href="<?php echo kmSettings()?>">Site public</a>
-</ul>
-
-<h3>Images</h3>
-<ul>
-	<li><a href="./images.php">Nouvelle image</a></li>
-	<li><a href="./images.php?op=list">Gestion des images</a></li>
-	<li><a href="./images.php?op=operations">Opérations</a></li>
-</ul>
-<h3>Configuration</h3>
-<ul>
-	<li><a href="./config.php">Paramètres</a></li>
-	<li><a href="./config.php?op=themes">Thèmes</a></li>
-	<li><a href="./config.php?op=info">Informations</a></li>
-</ul>
-
-
-<h3>&nbsp;</h3>
-<ul>
-	<li><a href="logout.php">Déconnexion</a></li>
-</ul>
+<? include_once(dirname(__FILE__).'/includes/menu.inc');?>
 </td>
 
 <td class="MainCell">
@@ -120,30 +99,52 @@ function openClose(id,mode)
 <?php
 if($op=='image') {
 ?>
-<form>
+<form method="POST">
 	<fieldset>
-		<legend><?php echo $action_title?></legend>
+		<legend><?php echo $page_strings['action_title']?></legend>
 		<p><label for="image_title">Titre:</label><br/>
 		<?php echo form::field('image_title',50,50,getImagename());?></p>
 		<p><label for="image_content">Texte:</label><br/>
-		<?php echo form::textarea('image_title',50,10,getImagename());?></p>
+		<?php echo form::textarea('image_content',100,10,getImageBody());?></p>
 	</fieldset>
+	<br/>
 	<fieldset>
+	     <legend>Image</legend>
+	     <div class="imagethumbright"><img src="<?php echo getImageThumb();?>"/></div>
+	     <p><label for="image_file">Nom du fichier:</label><br/>
+		<?php echo form::field('image_file',50,50,getImageFileName());?>
+		<input type="button" value="Modifier"/></p>
+    	     <ul>
+	          <li>Regénérer la miniature</li>
+	     </ul>
+
+	</fieldset>
+	<br/>
+	<fieldset class="actions">
 		<legend>Actions</legend>
 		<? echo form::hidden('op','image');?>
 		<? echo form::hidden('id',$id);?>
 		<? echo form::hidden('posted',1);?>
-		<input type="submit" value="Enregistrer"/>&nbsp;<input type="reset" value="Annuler"/>
+		<input type="submit" value="Enregistrer"/>
+		&nbsp;
+		<input type="button" value="Supprimer" onclick="javascript:void(0);"/>
+		&nbsp;
+		<?php if($kermert->isVisible()){ ?>
+		<input type="button" value="Mettre hors-ligne" onclick="javascript:void(0);"/>
+		<?php }else{ ?>
+		<input type="button" value="Mettre en ligne" onclick="javascript:void(0);"/>
+		<?php } ?>
 	</fieldset>
 </form>
 <? }else{ ?>
 <?php $kermert->loadImagesList('all',$offset);?>
 
-<?php while(!$kermert->EOF() && $kermert->getCurrIdx() <= $offset+9) {?>
+<?php while(!$kermert->EOF() && $kermert->getCurrIdx() <= $offset+$list_step) {?>
 <div class="imageitem">
+<div class="imagestatus"><?php if($kermert->isVisible()){ ?>(En ligne)<?php }else{ ?>(Hors ligne)<?php } ?></div>
 [<a href="#" onclick="javascrip:openClose('preview<?php echo $kermert->getCurrIdx();?>',0)">Preview</a>] <a href="?op=image&id=<?php getImageId()?>"><?=getImagename();?></a>
 <div id="preview<?php echo $kermert->getCurrIdx();?>" class="imagedetail" style="display:none">
-	<div class="imagethumb"><img src="<?php echo getImageThumb();?>" align="left"/></div>
+	<div class="imagethumbleft"><img src="<?php echo getImageThumb();?>"/></div>
 	<?php echo getImageBody();?>
 	<div style="clear:both;"></div>
 </div>

@@ -297,3 +297,8 @@ input, textarea
 	padding: 2px;
 	float: right;
 }
+
+.imagestatus {
+     text-align:right;
+     float: right;
+}
