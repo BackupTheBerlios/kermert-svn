@@ -238,7 +238,7 @@ pre
 .Textbox, textarea
 {
 	border: 1px solid #AAAAAA;
-	width: 100%;
+	width: 80%;
 }
 .button
 {
@@ -249,6 +249,7 @@ input, textarea
 {
 	font-family: Verdana, Geneva, Arial, Sans-Serif;
 	font-size: 10px;
+	border: 1px solid #AAAAAA;
 }
 
 .Framework
@@ -286,7 +287,13 @@ input, textarea
 	background-color: white;
 	padding: 2px;
 }
-.imagethumb {
+
+.imagethumbleft {
 	padding: 2px;
 	float: left;
+}
+
+.imagethumbright {
+	padding: 2px;
+	float: right;
 }
