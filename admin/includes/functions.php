@@ -37,4 +37,20 @@ function OuiNon($bool){
    return "<font color=\"#ff0000\"> Non</font>";
   }
 }
+
+function getCategoryList()
+{
+	global $con;
+	
+	$categories = array();
+	
+	$rs = $con->select("SELECT * FROM ".km_dbprefix."categories ORDER BY name");
+	while(!$rs->EOF())
+	{
+		$categories[$rs->f('name')] = $rs->f('id');
+		$rs->movenext();
+	}
+	
+	return($categories);
+}
 ?>

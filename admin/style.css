@@ -240,16 +240,16 @@ pre
 	border: 1px solid #AAAAAA;
 	width: 80%;
 }
-.button
-{
-	border: 1px solid #AAAAAA;
-	background-color: #CCD4E0;
-}
 input, textarea
 {
 	font-family: Verdana, Geneva, Arial, Sans-Serif;
 	font-size: 10px;
 	border: 1px solid #AAAAAA;
+}
+.button
+{
+	border: 1px solid #AAAAAA;
+	background-color: #CCD4E0;
 }
 
 .Framework

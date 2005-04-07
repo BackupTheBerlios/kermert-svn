@@ -24,5 +24,8 @@ include_once(dirname(__FILE__).'/class.mysql.php');
 
 class kmImage extends Recordset
 {
+	function kmImage()
+	{
+	}
 }
 ?>

@@ -39,6 +39,8 @@ if($op=='image')
 		$page_strings = array('action_title'=>'Modifier l\'image','action_button'=>'Modifier');
 		$kermert->loadSingleImage($id);
 	}
+	else
+		$kermert->setSingleImage();
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -89,14 +91,31 @@ if($op=='image')
 if($op=='image') {
 ?>
 <form method="POST">
+<?php form::hidden('image_id',getImageid());?>
 	<fieldset>
 		<legend><?php echo $page_strings['action_title']?></legend>
 		<p><label for="image_title">Titre:</label><br/>
-		<?php echo form::field('image_title',50,50,getImagename());?></p>
-		<p><label for="content_mode">Format:</label><br/>
-		<?php echo form::combo('content_mode',array('Wiki'=>'wiki','HTML'=>'redim'),getImageMode())?></p>
+		<?php echo form::field('image_title',80,80,getImagename());?></p>
+		<table width="80%">
+			<tr>
+				<td><label for="content_mode">Format:</label></td>
+				<td><label for="image_category">Catégorie:</label></td>
+			</tr>
+			<tr>
+				<td><?php echo form::combo('content_mode',array('Wiki'=>'wiki','HTML'=>'redim'),getImageMode())?></td>
+				<td><?php echo form::combo('image_category',getCategoryList())?></td>
+			</tr>
+		</table>
 		<p><label for="image_content">Texte:</label><br/>
 		<?php echo form::textarea('image_content',100,10,getImageBody());?></p>
+	</fieldset>
+	<br/>
+	<fieldset>
+		<legend>Horodatage / Commentaires / Trackbacks</legend>
+		<p><label for="image_file">Autoriser les commentaires:</label>
+		<?php echo form::combo('img_comments',array('Oui'=>1,'Non'=>0));?></p>
+		<p><label for="image_file">Autoriser les trackbacks:</label>
+		<?php echo form::combo('img_trackbacks',array('Oui'=>1,'Non'=>0));?></p>
 	</fieldset>
 	<br/>
 	<fieldset>

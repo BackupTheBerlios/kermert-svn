@@ -41,7 +41,10 @@ function getImageFileName()
 function getImageThumb()
 {
 	global $kermert;
-	echo km_appurl.km_thumbsdir.'thumb_'.$kermert->imageslist->f('image');
+	if($kermert->imageslist->f('image')!='')
+		echo km_appurl.km_thumbsdir.'thumb_'.$kermert->imageslist->f('image');
+	else
+		echo km_appurl.'includes/stuff/notfound.png';
 }
 
 function getImageBody()

@@ -31,7 +31,7 @@ class kermert
 
 	function loadSingleImage($id)
 	{
-		$this->imageslist = $this->con->select('SELECT * FROM '.km_dbprefix.'images WHERE id='.$id);
+		$this->imageslist = $this->con->select('SELECT * FROM '.km_dbprefix.'images WHERE id='.$id,'kmImage');
 		$this->imageslist->moveStart();
 	}
 	function loadImagesList($mode='all',$offset=0,$order='DESC')
@@ -40,7 +40,7 @@ class kermert
 			$elements = '*';
 		else
 			$elements = 'id,datetime,headline';
-		$this->imageslist = $this->con->select('SELECT '.$elements.' FROM '.km_dbprefix.'images ORDER BY datetime '.$order);
+		$this->imageslist = $this->con->select('SELECT '.$elements.' FROM '.km_dbprefix.'images ORDER BY datetime '.$order,'kmImage');
 		$this->imageslist->move($offset);
 	}
 
@@ -64,6 +64,11 @@ class kermert
 	     if($this->imageslist->f('status')=='0')
 	          return(false);
           return(true);
+	}
+	
+	function setSingleImage()
+	{
+		$this->imageslist = new kmImage();
 	}
 }
 ?>
