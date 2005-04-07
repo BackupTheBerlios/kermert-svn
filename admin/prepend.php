@@ -3,6 +3,7 @@ session_start();
 include_once(dirname(__FILE__).'/../includes/classes/class.ini.file.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.mysql.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.kermert.php');
+include_once(dirname(__FILE__).'/../includes/classes/class.kmImage.php');
 include_once(dirname(__FILE__).'/../includes/lib.form.php');
 include_once(dirname(__FILE__).'/../includes/functions.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kminfo.php');
