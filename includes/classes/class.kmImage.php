@@ -24,8 +24,16 @@ include_once(dirname(__FILE__).'/class.mysql.php');
 
 class kmImage extends Recordset
 {
-	function kmImage()
+	var $categories = array();
+	
+	function kmImage($data='')
 	{
+		if(is_array($data))
+		{
+			parent::RecordSet($data);
+		}
 	}
+	
+	
 }
 ?>

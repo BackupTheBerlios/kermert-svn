@@ -56,12 +56,17 @@ function getImageBody()
 function getImageId()
 {
 	global $kermert;
-	echo $kermert->imageslist->f('id');
+	return $kermert->imageslist->f('id');
 }
 
 function getImageMode()
 {
      global $kermert;
-	echo $kermert->imageslist->f('mode');
+	return $kermert->imageslist->f('mode');
+}
+
+function formatDate($date)
+{
+	//return(
 }
 ?>

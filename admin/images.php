@@ -27,16 +27,21 @@ $list_step = 9;
 
 $op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'image';
 $id = (!empty($_REQUEST['id'])) ? $_REQUEST['id'] : '';
+$posted = (!empty($_REQUEST['posted'])) ? $_REQUEST['posted'] : '';
 $offset = (!empty($_REQUEST['offset'])) ? $_REQUEST['offset'] : 0;
 
-$page_strings = array('action_title'=>'Nouvelle image','action_button'=>'Enregistrer');
+$page_strings = array('action_title'=>'Nouvelle image','action_button'=>'Enregistrer','posted'=>'insert');
 
 $action_title = 'Nouvelle image';
 if($op=='image')
 {
+	if($posted=='update')
+	{
+		$kermert->updateImage($_REQUEST);
+	}
 	if($id!='')
 	{
-		$page_strings = array('action_title'=>'Modifier l\'image','action_button'=>'Modifier');
+		$page_strings = array('action_title'=>'Modifier l\'image','action_button'=>'Modifier','posted'=>'update');
 		$kermert->loadSingleImage($id);
 	}
 	else
@@ -93,6 +98,29 @@ if($op=='image') {
 <form method="POST">
 <?php form::hidden('image_id',getImageid());?>
 	<fieldset>
+	     <legend>Image</legend>
+	     <div class="imagethumbright"><img src="<?php echo getImageThumb();?>"/></div>
+	     <p><label for="image_file">Nom du fichier:</label><br/>
+		<?php echo form::field('image_file',50,50,getImageFileName());?>
+		<input type="button" value="Modifier"/></p>
+    	     <ul>
+    	     <?php if($id!=''){ ?>
+	          <li>Regénérer la miniature</li>
+	          <li>Voir les informations EXIF</li>
+	     <?php }else{ ?>
+	     	<li><a href="#" onclick="javascript:openClose('uploadtab',0);">Uploader une image</a></li>
+	     	<li>Générer la miniature</li>
+	     <?php } ?>
+	     </ul>
+	     <div id="uploadtab" style="display:none;">
+	     <p>
+	     	<label for="uploadfile">Fichier à déposer:</label><br/>
+	     	<input type="file" class="button" id="uploadfile"/>
+	     </p>
+	     </div
+	</fieldset>
+	<br/>
+	<fieldset>
 		<legend><?php echo $page_strings['action_title']?></legend>
 		<p><label for="image_title">Titre:</label><br/>
 		<?php echo form::field('image_title',80,80,getImagename());?></p>
@@ -113,28 +141,18 @@ if($op=='image') {
 	<fieldset>
 		<legend>Horodatage / Commentaires / Trackbacks</legend>
 		<p><label for="image_file">Autoriser les commentaires:</label>
-		<?php echo form::combo('img_comments',array('Oui'=>1,'Non'=>0));?></p>
+		<?php echo form::combo('img_comments',array('Oui'=>1,'Non'=>0),$kermert->getField('comments'));?></p>
 		<p><label for="image_file">Autoriser les trackbacks:</label>
-		<?php echo form::combo('img_trackbacks',array('Oui'=>1,'Non'=>0));?></p>
-	</fieldset>
-	<br/>
-	<fieldset>
-	     <legend>Image</legend>
-	     <div class="imagethumbright"><img src="<?php echo getImageThumb();?>"/></div>
-	     <p><label for="image_file">Nom du fichier:</label><br/>
-		<?php echo form::field('image_file',50,50,getImageFileName());?>
-		<input type="button" value="Modifier"/></p>
-    	     <ul>
-	          <li>Regénérer la miniature</li>
-	     </ul>
-
+		<?php echo form::combo('img_trackbacks',array('Oui'=>1,'Non'=>0),$kermert->getField('trackbacks'));?></p>
 	</fieldset>
 	<br/>
 	<fieldset class="actions">
 		<legend>Actions</legend>
 		<? echo form::hidden('op','image');?>
 		<? echo form::hidden('id',$id);?>
-		<? echo form::hidden('posted',1);?>
+		<? echo form::hidden('posted',$page_strings['posted']);?>
+		<input type="submit" value="Prévisualiser"/>
+		&nbsp;
 		<input type="submit" value="Enregistrer"/>
 		&nbsp;
 		<input type="button" value="Supprimer" onclick="javascript:void(0);"/>
@@ -152,7 +170,7 @@ if($op=='image') {
 <?php while(!$kermert->EOF() && $kermert->getCurrIdx() <= $offset+$list_step) {?>
 <div class="imageitem">
 <div class="imagestatus"><?php if($kermert->isVisible()){ ?>(En ligne)<?php }else{ ?>(Hors ligne)<?php } ?></div>
-[<a href="#" onclick="javascrip:openClose('preview<?php echo $kermert->getCurrIdx();?>',0)">Preview</a>] <a href="?op=image&id=<?php getImageId()?>"><?=getImagename();?></a>
+[<a href="#" onclick="javascrip:openClose('preview<?php echo $kermert->getCurrIdx();?>',0)">Preview</a>] <a href="?op=image&id=<?php echo getImageId()?>"><?=getImagename();?></a>
 <div id="preview<?php echo $kermert->getCurrIdx();?>" class="imagedetail" style="display:none">
 	<div class="imagethumbleft"><img src="<?php echo getImageThumb();?>"/></div>
 	<?php echo getImageBody();?>

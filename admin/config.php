@@ -33,6 +33,7 @@ if($op=='params')
 		$ini->editVar('km_appname',trim($_REQUEST['app_name']));
 		$ini->editVar('km_appurl',trim($_REQUEST['app_url']));
 		$ini->editVar('km_imagesdir',trim($_REQUEST['images_dir']));
+		$ini->editVar('km_dateformat',trim($_REQUEST['date_format']));
 		$ini->editVar('km_dbhost',trim($_REQUEST['db_host']));
 		$ini->editVar('km_dbuser',trim($_REQUEST['db_user']));
 		$ini->editVar('km_dbpassword',trim($_REQUEST['db_password']));
@@ -125,6 +126,8 @@ if($op=='info') {
 		<?php echo form::field('images_dir',40,40,$params['km_imagesdir'])?></p>
 		<p><label for="thumb_dir">Répertoire des miniatures:</label><br/>
 		<?php echo form::field('thumb_dir',40,40,$params['km_thumbsdir'])?></p>
+		<p><label for="date_format">Format de la date:</label><br/>
+		<?php echo form::field('date_format',40,40,$params['km_dateformat'])?>&nbsp;(selon la fonction <a href="http://php.net/date">date</a> de PHP)</p>
 	</fieldset><br/>
 	<fieldset>
 		<legend>Base de données</legend>
