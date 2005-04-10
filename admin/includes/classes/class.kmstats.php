@@ -59,8 +59,12 @@ class kmStats
 
 	function getCurrIdx()
 	{
-		return($this->imageslist->int_index);
+		return($this->statslist->int_index);
 	}
-
+	
+	function field($field)
+	{
+		return($this->statslist->f($field));
+	}
 }
 ?>

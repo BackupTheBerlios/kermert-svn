@@ -84,7 +84,7 @@ $stats = new kmStats($con);
 <p>
 <?php while(!$stats->EOF() && $stats->getCurrIdx() <= $offset+$list_step) {?>
 <div class="imageitem">
-[<a href="#" onclick="javascrip:openClose('preview<?php echo $stats->getCurrIdx();?>',0)">Preview</a>]
+[<a href="#" onclick="javascrip:openClose('preview<?php echo $stats->getCurrIdx();?>',0)">Preview</a>] <?php echo $stats->field('ua')?>
 <div id="preview<?php echo $stats->getCurrIdx();?>" class="imagedetail" style="display:none">
 	<div class="imagethumbleft"><img src="<?php echo getImageThumb();?>"/></div>
 	<?php echo getImageBody();?>
