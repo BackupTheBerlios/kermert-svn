@@ -22,6 +22,15 @@
 
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.wiki2xhtml.php');
+require_once(dirname(__FILE__).'/includes/Sajax.php');
+
+// Sajax Init
+
+sajax_init();
+$sajax_remote_uri = './sajax_operations.php';
+
+sajax_export("ImageInfos","getThumbs");
+sajax_handle_client_request();
 
 $list_step = 9;
 
@@ -55,6 +64,15 @@ if($op=='image')
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
 <script type="text/javascript" src="./includes/tools.js"></script>
+<script type="text/javascript" src="./includes/sajax_extra.js"></script>
+<script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+<?
+sajax_show_javascript();
+?>
+-->
+</script>
 <title>Administration</title>
 </head>
 <body>
@@ -91,34 +109,49 @@ if($op=='image')
 <div class="post">
 <h2>Images</h2>
 <p class="modified"><b>&middot; <?=subtitle('images.'.$op)?></b></p>
+
 <p>
 <?php
 if($op=='image') {
 ?>
-<form method="POST">
-<?php form::hidden('image_id',getImageid());?>
+<form method="POST" action="./file_upload.php" id="form_manage" enctype="multipart/form-data" target="ope_iframe">
+<?php echo form::hidden('op','uploadfile');?>
+<?php echo form::hidden('image_id',getImageid());?>
 	<fieldset>
 	     <legend>Image</legend>
-	     <div class="imagethumbright"><img src="<?php echo getImageThumb();?>"/></div>
-	     <p><label for="image_file">Nom du fichier:</label><br/>
-		<?php echo form::field('image_file',50,50,getImageFileName());?>
-		<input type="button" value="Modifier"/></p>
+	     <div class="imagethumbright"><img id="imgthumb" src="<?php echo getImageThumb();?>"/></div>
+	     <p id="uploadbox"></p>
+	     <p><label for="image_name">Nom du fichier:</label><br/>
+		<?php echo form::field('image_name',50,50,getImageFileName());?>
+		<input type="button" value="Modifier" onclick="javascript:updateImageName();"/></p>
     	     <ul>
     	     <?php if($id!=''){ ?>
 	          <li>Regénérer la miniature</li>
-	          <li>Voir les informations EXIF</li>
+	          <li><a onclick="javascript:exif_info('<?echo getImageFileName()?>');">Voir les informations EXIF</a></li>
 	     <?php }else{ ?>
 	     	<li><a href="#" onclick="javascript:openClose('uploadtab',0);">Uploader une image</a></li>
-	     	<li>Générer la miniature</li>
+	     	<li><a href="#" onclick="javascript:genThumbs();">Générer la miniature</a></li>
 	     <?php } ?>
 	     </ul>
 	     <div id="uploadtab" style="display:none;">
 	     <p>
 	     	<label for="uploadfile">Fichier à déposer:</label><br/>
-	     	<input type="file" class="button" id="uploadfile"/>
+	     	<input type="file" class="button" name="uploadfile" id="uploadfile"/><br/><input type="submit" value="Envoyer"/>
+
 	     </p>
 	     </div
 	</fieldset>
+</form>
+<div id="exif_div" style="display:none;">
+<form>
+     <fieldset>
+          <legend>Informations EXIF</legend>
+          <p id="exif_paragraph">Récupération des données EXIF en cours...</p>
+          <p>[<a onclick="javascript:openClose('exif_div',-1);">Cacher</a>]</p>
+     </fieldset>
+</form>
+</div>
+<form method="post" id="form_images">
 	<br/>
 	<fieldset>
 		<legend><?php echo $page_strings['action_title']?></legend>
@@ -164,6 +197,7 @@ if($op=='image') {
 		<?php } ?>
 	</fieldset>
 </form>
+<iframe src="blank.html" id="ope_iframe" name="ope_iframe" class="blankiframe"></iframe>
 <? }elseif($op=='list'){ ?>
 <?php $kermert->loadImagesList('all',$offset);?>
 
@@ -178,6 +212,9 @@ if($op=='image') {
 </div>
 </div>
 <?php $kermert->moveNext();} ?>
+<div id="listtools" class="imagedetail" style="text-align:center;">
+<?php echo paginate($offset,$list_step)?>
+</div>
 <?php }elseif($op=='operations'){ ?>
 <ul>
 	<li><a href="#" onclick="javascript:operations('regenerate',1);">Regénérer toutes les miniatures</a></li>

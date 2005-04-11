@@ -8,6 +8,7 @@ include_once(dirname(__FILE__).'/../includes/lib.form.php');
 include_once(dirname(__FILE__).'/../includes/functions.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kminfo.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kmuser.php');
+include_once(dirname(__FILE__).'/includes/classes/class.GDWrapper.php');
 include_once(dirname(__FILE__).'/includes/functions.php');
 
 define('CONFIG_FILE',dirname(__FILE__).'/../config/kermert.ini');

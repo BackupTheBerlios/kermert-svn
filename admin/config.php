@@ -32,6 +32,7 @@ if($op=='params')
 		$ini = new iniFile(CONFIG_FILE);
 		$ini->editVar('km_appname',trim($_REQUEST['app_name']));
 		$ini->editVar('km_appurl',trim($_REQUEST['app_url']));
+		$ini->editVar('km_appdir',trim($_REQUEST['app_dir']));
 		$ini->editVar('km_imagesdir',trim($_REQUEST['images_dir']));
 		$ini->editVar('km_dateformat',trim($_REQUEST['date_format']));
 		$ini->editVar('km_dbhost',trim($_REQUEST['db_host']));
@@ -42,6 +43,7 @@ if($op=='params')
 		$ini->editVar('km_graphiclib',trim($_REQUEST['graphic_lib']));
 		$ini->editVar('km_thumbwidth',trim($_REQUEST['thumb_width']));
 		$ini->editVar('km_thumbheight',trim($_REQUEST['thumb_height']));
+		$ini->editVar('km_graphicthumbtype',trim($_REQUEST['graphic_thumbtype']));
 		$ini->saveFile();
 	}
 
@@ -122,6 +124,8 @@ if($op=='info') {
 		<?php echo form::field('app_name',50,50,$params['km_appname'])?></p>
 		<p><label for="app_url">URL de l'application:</label><br/>
 		<?php echo form::field('app_url',40,40,$params['km_appurl'])?></p>
+		<p><label for="app_dir">Chemin complet de l'application:</label><br/>
+		<?php echo form::field('app_dir',40,255,$params['km_appdir'])?></p>
 		<p><label for="images_dir">Répertoire des images:</label><br/>
 		<?php echo form::field('images_dir',40,40,$params['km_imagesdir'])?></p>
 		<p><label for="thumb_dir">Répertoire des miniatures:</label><br/>
