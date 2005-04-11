@@ -41,16 +41,27 @@ function OuiNon($bool){
 function getCategoryList()
 {
 	global $con;
-	
+
 	$categories = array();
-	
+
 	$rs = $con->select("SELECT * FROM ".km_dbprefix."categories ORDER BY name");
 	while(!$rs->EOF())
 	{
 		$categories[$rs->f('name')] = $rs->f('id');
 		$rs->movenext();
 	}
-	
+
 	return($categories);
+}
+
+function paginate($offset,$step)
+{
+     global $kermert;
+     $pages = (int)($kermert->imageslist->nbRow() / $step)+1;
+     $txt = "[ ";
+     for($i=0; $i<$pages;$i++)
+          $txt.='<a href="./images.php?op=list&offset='.($i*$step).'">'.($i+1)."</a>&nbsp;";
+     $txt.= " ]";
+     return($txt);
 }
 ?>
