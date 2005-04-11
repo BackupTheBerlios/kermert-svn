@@ -302,3 +302,10 @@ input, textarea
      text-align:right;
      float: right;
 }
+
+.blankiframe {
+     display: none;
+     width: 0px;
+     height: 0px;
+     border: 0px;
+}
