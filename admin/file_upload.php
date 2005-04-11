@@ -30,7 +30,7 @@ function saveFile()
 {
      if ( is_uploaded_file($_FILES["uploadfile"]['tmp_name']))
      {
-          $new_file = dirname(__FILE__).'/../images/'.$_FILES["uploadfile"]['name'];
+          $new_file = km_appdir.km_imagesdir.$_FILES["uploadfile"]['name'];
           if(!move_uploaded_file($_FILES["uploadfile"]['tmp_name'],$new_file))
           {
                $response = 'KO';

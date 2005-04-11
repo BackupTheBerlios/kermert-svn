@@ -29,33 +29,13 @@ require_once(dirname(__FILE__).'/includes/Sajax.php');
 sajax_init();
 $sajax_remote_uri = './sajax_operations.php';
 
-sajax_export("ImageInfos","getThumbs");
+sajax_export("updateImageStatus");
 sajax_handle_client_request();
 
 $list_step = 9;
 
-$op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'image';
-$id = (!empty($_REQUEST['id'])) ? $_REQUEST['id'] : '';
-$posted = (!empty($_REQUEST['posted'])) ? $_REQUEST['posted'] : '';
+$op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'list';
 $offset = (!empty($_REQUEST['offset'])) ? $_REQUEST['offset'] : 0;
-
-$page_strings = array('action_title'=>'Nouvelle image','action_button'=>'Enregistrer','posted'=>'insert');
-
-$action_title = 'Nouvelle image';
-if($op=='image')
-{
-	if($posted=='update')
-	{
-		$kermert->updateImage($_REQUEST);
-	}
-	if($id!='')
-	{
-		$page_strings = array('action_title'=>'Modifier l\'image','action_button'=>'Modifier','posted'=>'update');
-		$kermert->loadSingleImage($id);
-	}
-	else
-		$kermert->setSingleImage();
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -71,6 +51,15 @@ if($op=='image')
 <?
 sajax_show_javascript();
 ?>
+
+function updateStatus(id)
+{
+	x_updateImageStatus(id,statusupdated);
+	document.getElementById("b"+id).value="Valider";
+}
+function statusupdate(result)
+{
+}
 -->
 </script>
 <title>Administration</title>
@@ -108,107 +97,22 @@ sajax_show_javascript();
 
 <div class="post">
 <h2>Images</h2>
-<p class="modified"><b>&middot; <?=subtitle('images.'.$op)?></b></p>
+<p class="modified"><b>&middot; <?php echo subtitle('images.'.$op);?></b></p>
 
 <p>
 <?php
-if($op=='image') {
-?>
-<form method="POST" action="./file_upload.php" id="form_manage" enctype="multipart/form-data" target="ope_iframe">
-<?php echo form::hidden('op','uploadfile');?>
-<?php echo form::hidden('image_id',getImageid());?>
-	<fieldset>
-	     <legend>Image</legend>
-	     <div class="imagethumbright"><img id="imgthumb" src="<?php echo getImageThumb();?>"/></div>
-	     <p id="uploadbox"></p>
-	     <p><label for="image_name">Nom du fichier:</label><br/>
-		<?php echo form::field('image_name',50,50,getImageFileName());?>
-		<input type="button" value="Modifier" onclick="javascript:updateImageName();"/></p>
-    	     <ul>
-    	     <?php if($id!=''){ ?>
-	          <li>Regénérer la miniature</li>
-	          <li><a onclick="javascript:exif_info('<?echo getImageFileName()?>');">Voir les informations EXIF</a></li>
-	     <?php }else{ ?>
-	     	<li><a href="#" onclick="javascript:openClose('uploadtab',0);">Uploader une image</a></li>
-	     	<li><a href="#" onclick="javascript:genThumbs();">Générer la miniature</a></li>
-	     <?php } ?>
-	     </ul>
-	     <div id="uploadtab" style="display:none;">
-	     <p>
-	     	<label for="uploadfile">Fichier à déposer:</label><br/>
-	     	<input type="file" class="button" name="uploadfile" id="uploadfile"/><br/><input type="submit" value="Envoyer"/>
-
-	     </p>
-	     </div
-	</fieldset>
-</form>
-<div id="exif_div" style="display:none;">
-<form>
-     <fieldset>
-          <legend>Informations EXIF</legend>
-          <p id="exif_paragraph">Récupération des données EXIF en cours...</p>
-          <p>[<a onclick="javascript:openClose('exif_div',-1);">Cacher</a>]</p>
-     </fieldset>
-</form>
-</div>
-<form method="post" id="form_images">
-	<br/>
-	<fieldset>
-		<legend><?php echo $page_strings['action_title']?></legend>
-		<p><label for="image_title">Titre:</label><br/>
-		<?php echo form::field('image_title',80,80,getImagename());?></p>
-		<table width="80%">
-			<tr>
-				<td><label for="content_mode">Format:</label></td>
-				<td><label for="image_category">Catégorie:</label></td>
-			</tr>
-			<tr>
-				<td><?php echo form::combo('content_mode',array('Wiki'=>'wiki','HTML'=>'redim'),getImageMode())?></td>
-				<td><?php echo form::combo('image_category',getCategoryList())?></td>
-			</tr>
-		</table>
-		<p><label for="image_content">Texte:</label><br/>
-		<?php echo form::textarea('image_content',100,10,getImageBody());?></p>
-	</fieldset>
-	<br/>
-	<fieldset>
-		<legend>Horodatage / Commentaires / Trackbacks</legend>
-		<p><label for="image_file">Autoriser les commentaires:</label>
-		<?php echo form::combo('img_comments',array('Oui'=>1,'Non'=>0),$kermert->getField('comments'));?></p>
-		<p><label for="image_file">Autoriser les trackbacks:</label>
-		<?php echo form::combo('img_trackbacks',array('Oui'=>1,'Non'=>0),$kermert->getField('trackbacks'));?></p>
-	</fieldset>
-	<br/>
-	<fieldset class="actions">
-		<legend>Actions</legend>
-		<? echo form::hidden('op','image');?>
-		<? echo form::hidden('id',$id);?>
-		<? echo form::hidden('posted',$page_strings['posted']);?>
-		<input type="submit" value="Prévisualiser"/>
-		&nbsp;
-		<input type="submit" value="Enregistrer"/>
-		&nbsp;
-		<input type="button" value="Supprimer" onclick="javascript:void(0);"/>
-		&nbsp;
-		<?php if($kermert->isVisible()){ ?>
-		<input type="button" value="Mettre hors-ligne" onclick="javascript:void(0);"/>
-		<?php }else{ ?>
-		<input type="button" value="Mettre en ligne" onclick="javascript:void(0);"/>
-		<?php } ?>
-	</fieldset>
-</form>
-<iframe src="blank.html" id="ope_iframe" name="ope_iframe" class="blankiframe"></iframe>
-<? }elseif($op=='list'){ ?>
+if($op=='list'){ ?>
 <?php $kermert->loadImagesList('all',$offset);?>
 
 <?php while(!$kermert->EOF() && $kermert->getCurrIdx() <= $offset+$list_step) {?>
 <div class="imageitem">
-<div class="imagestatus"><?php if($kermert->isVisible()){ ?>(En ligne)<?php }else{ ?>(Hors ligne)<?php } ?></div>
-[<a href="#" onclick="javascrip:openClose('preview<?php echo $kermert->getCurrIdx();?>',0)">Preview</a>] <a href="?op=image&id=<?php echo getImageId()?>"><?=getImagename();?></a>
+<div class="imagestatus" id="imgstatus<?php echo getImageId()?>"><?php if($kermert->isVisible()){ ?>(En ligne)<?php }else{ ?>(Hors ligne)<?php } ?></div>
+[<a href="#" onclick="javascrip:openClose('preview<?php echo $kermert->getCurrIdx();?>',0)">Preview</a>] 
+<a href="./image.php?op=image&id=<?php echo getImageId()?>"><?=getImagename();?></a>
 <div id="preview<?php echo $kermert->getCurrIdx();?>" class="imagedetail" style="display:none">
 	<div class="imagethumbleft"><img src="<?php echo getImageThumb();?>"/></div>
 	<?php echo getImageBody();?>
-	<div style="clear:both;"></div>
+	<div style="clear:both; text-align:right;"><input type="button" id="b<?php echo getImageId()?>" value="mettre en ligne" onclick="javascript:updateStatus(<?php echo getImageId()?>);"/></div>
 </div>
 </div>
 <?php $kermert->moveNext();} ?>

@@ -54,9 +54,15 @@ function genThumb($image)
           return(sajax_serialize("status","OK","thumb",$res));
 }
 
+function updateStatus($id)
+{
+	global $con;
+	$res = $con->execute("UPDATE images SET status=");
+	return(sajax_serialize('status','OK','id',$id));
+}
 
 sajax_init();
-sajax_export("ImageInfos","getThumbs");
+sajax_export("ImageInfos","getThumbs","updateStatus");
 sajax_handle_client_request();
 
 ?>

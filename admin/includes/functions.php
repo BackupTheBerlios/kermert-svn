@@ -64,4 +64,5 @@ function paginate($offset,$step)
      $txt.= " ]";
      return($txt);
 }
+
 ?>
