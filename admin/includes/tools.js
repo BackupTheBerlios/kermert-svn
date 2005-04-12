@@ -23,35 +23,6 @@
 # ***** END LICENSE BLOCK *****
 */
 
-/* function openClose(id,mode)
-{
-	if(document.getElementById) {
-		element = document.getElementById(id);
-		img = document.getElementById('img_' + id);
-	} else if(document.all) {
-		element = document.all[id];
-		img = document.all['img_' + id];
-	} else return;
-
-	if(element.style) {
-		if(mode == 0) {
-			if(element.style.display == 'block' ) {
-				element.style.display = 'none';
-				img.src = 'images/plus.png';
-			} else {
-				element.style.display = 'block';
-				img.src = 'images/moins.png';
-			}
-		} else if(mode == 1) {
-			element.style.display = 'block';
-			img.src = 'images/moins.png';
-		} else if(mode == -1) {
-			element.style.display = 'none';
-			img.src = 'images/plus.png';
-		}
-	}
-}
-*/
 function openClose(id,mode)
 {
 	if(document.getElementById) {
@@ -85,4 +56,14 @@ function operations(action,mode)
 	} else return;
 	element.src='./operations.php?op='+action;
 	return;
+}
+
+function getElement(id)
+{
+	if(document.getElementById) {
+		return document.getElementById(id);
+	} else if(document.all) {
+		return document.all[id];
+	} else return;
+
 }

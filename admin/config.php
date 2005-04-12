@@ -116,7 +116,7 @@ if($op=='info') {
 <?php
 }elseif($op=='params'){
 ?>
-<form>
+<form method="POST" action="config.php"">
 	<fieldset>
 		<legend>Général</legend>
 		<p>Les informations publiques de votre photoblog.</p>

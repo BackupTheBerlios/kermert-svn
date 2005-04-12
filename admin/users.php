@@ -21,14 +21,14 @@
 # ***** END LICENSE BLOCK *****
 
 include_once(dirname(__FILE__).'/prepend.php');
-include_once(dirname(__FILE__).'/includes/classes/class.kmstats.php');
+include_once(dirname(__FILE__).'/includes/classes/class.kmuser.php');
+include_once(dirname(__FILE__).'/includes/wrappers/wrapper.kmuser.php');
+require_once(dirname(__FILE__).'/includes/Sajax.php');
 
-$offset = (!empty($_REQUEST['offset'])) ? $_REQUEST['offset'] : 0;
-$op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'summary';
+sajax_init();
+sajax_export("ImageInfos","getThumbs");
+sajax_handle_client_request();
 
-$list_step = 29;
-
-$stats = new kmStats($con);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,8 +38,18 @@ $stats = new kmStats($con);
 <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
 <title>Administration</title>
 <script type="text/javascript" src="./includes/tools.js"></script>
+<script type="text/javascript" src="./includes/sajax_extra.js"></script>
+<script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
+<script language="javascript" type="text/javascript" src="./includes/wrappers/wrapper.kmuser.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+<?
+sajax_show_javascript();
+?>
+-->
+</script>
 </head>
-<body>
+<body onload="javascript:initPage();">
 <table width="100%" class="Framework" cellspacing="0" cellpadding="0">
 <tr>
 <td colspan="2">
@@ -71,30 +81,25 @@ $stats = new kmStats($con);
 
 
 <div class="post">
-<h2>Statistiques</h2>
-<p class="modified"><b>&gt; <?=subtitle('stats.'.$op)?></b></p>
-<?php if($op=='summary') { ?>
-<p>
-<ul>
-	<li>Visiteurs uniques: <?php echo $stats->getCount('ip');?></li>
-</il>
+<h2>Utilisateurs</h2>
+<p class="modified"><b>&middot; Gestion</b></p>
+<p id="listusers">
+
 </p>
-<?php }elseif($op=='detail'){ ?>
-<?php $stats->loadStatList();?>
 <p>
-<?php while(!$stats->EOF() && $stats->getCurrIdx() <= $offset+$list_step) {?>
-<div class="imageitem">
-[<a class="nohref" onclick="javascrip:openClose('preview<?php echo $stats->getCurrIdx();?>',0)">Détails</a>] IP:<?php echo $stats->field('ip')?>
-<div id="preview<?php echo $stats->getCurrIdx();?>" class="imagedetail" style="display:none">
-<ul>
-	<li>Navigateur: <?php echo $stats->field('ua')?></li>
-	<li>Hôte: <?php echo $stats->field('host');?></li>
-</ul>
-</div>
-</div>
-<?php $stats->moveNext();} ?>
+	<form method="POST">
+		<fieldset>
+			<legend><span id="legend_txt"></span></legend>
+			<p><label for="nickname">Pseudo:</label><br/>
+			<input type="text" id="nickname" name="nickname"/></p>
+			<p><input type="button" name="bsubmit" id="bsubmit" onclick="javascript:validateForm();"/></p>
+		</fieldset>
+	</form>
 </p>
-<?php }?>
+<div id="placeholder" style="display: none;">
+	<div class="imageitem">
+		<span id="name"></span>
+	</div>
 </div>
 </td>
 </tr>
