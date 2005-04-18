@@ -23,11 +23,12 @@
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.wiki2xhtml.php');
 require_once(dirname(__FILE__).'/includes/Sajax.php');
+require_once(dirname(__FILE__).'/includes/sajax/images.php');
 
 // Sajax Init
 
 sajax_init();
-$sajax_remote_uri = './sajax_operations.php';
+//$sajax_remote_uri = './sajax_operations.php';
 
 sajax_export("updateImageStatus");
 sajax_handle_client_request();
@@ -46,20 +47,12 @@ $offset = (!empty($_REQUEST['offset'])) ? $_REQUEST['offset'] : 0;
 <script type="text/javascript" src="./includes/tools.js"></script>
 <script type="text/javascript" src="./includes/sajax_extra.js"></script>
 <script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
+<script language="javascript" type="text/javascript" src="./includes/wrappers/wrapper.images.js"></script>
 <script language="javascript" type="text/javascript">
 <!--
 <?
 sajax_show_javascript();
 ?>
-
-function updateStatus(id)
-{
-	x_updateImageStatus(id,statusupdated);
-	document.getElementById("b"+id).value="Valider";
-}
-function statusupdate(result)
-{
-}
 -->
 </script>
 <title>Administration</title>

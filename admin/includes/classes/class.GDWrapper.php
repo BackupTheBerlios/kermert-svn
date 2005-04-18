@@ -26,13 +26,11 @@ class GDWrapper
      function genThumb($src)
      {
           $percent = 0.5;
+          	debug('image:'.$src);
           if(!GDWrapper::available())
                return(false);
+          $thumb = km_thumbsdir."tn_".$src;
           $src = km_appdir.km_imagesdir.$src;
-          $mini_dst = km_thumbsdir."tn_".$src;
-          $dst = km_appdir.km_thumbsdir."tn_".$src;
-
-          return($dst);
 
           // Calcul des nouvelles dimensions
           list($width, $height) = getimagesize($src);
@@ -44,8 +42,8 @@ class GDWrapper
           $source = imagecreatefromjpeg($src);
 
           // Redimensionnement
-          imagecopyresized($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-          return($mini_dst);
+          imagecopyresized($thumb, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+          return($thumb);
      }
 
      function available()

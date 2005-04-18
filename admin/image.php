@@ -27,9 +27,9 @@ require_once(dirname(__FILE__).'/includes/Sajax.php');
 // Sajax Init
 
 sajax_init();
-$sajax_remote_uri = './sajax_operations.php';
+$sajax_remote_uri = './includes/sajax/image.php';
 
-sajax_export("ImageInfos","getThumbs");
+sajax_export("ImageInfos","generateThumb");
 sajax_handle_client_request();
 
 $list_step = 9;
@@ -66,6 +66,7 @@ if($op=='image')
 <script type="text/javascript" src="./includes/tools.js"></script>
 <script type="text/javascript" src="./includes/sajax_extra.js"></script>
 <script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
+<script language="javascript" type="text/javascript" src="./includes/wrappers/wrapper.image.js"></script>
 <script language="javascript" type="text/javascript">
 <!--
 <?
@@ -109,7 +110,8 @@ sajax_show_javascript();
 <div class="post">
 <h2>Images</h2>
 <p class="modified"><b>&middot; <?php echo $page_strings['action_title']?></b></p>
-
+<div id="sajaxmsgbox">
+</div>
 <p>
 <?php
 if($op=='image') {

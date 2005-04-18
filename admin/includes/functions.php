@@ -65,4 +65,29 @@ function paginate($offset,$step)
      return($txt);
 }
 
+function logger($msg,$lvl='ERROR')
+{
+	error_log('<'.date('Y-m-j H:i:s').'><'.$lvl.'> '.$msg.chr(10),3,dirname(__FILE__).'/../logs.txt');
+}
+
+function debug($msg)
+{
+	logger($msg,'DEBUG');
+}
+function info($msg)
+{
+	logger($msg,'INFO');
+}
+function error($msg)
+{
+	logger($msg,'ERROR');
+}
+function warning($msg)
+{
+	logger($msg,'WARNING');
+}
+function fatal($msg)
+{
+	logger($msg,'FATAL');
+}
 ?>
