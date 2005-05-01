@@ -69,4 +69,15 @@ function formatDate($date)
 {
 	//return(
 }
+
+function getMode($params)
+{
+	// No params: index page
+	if(count($params)==0)
+		return(array('page'=>'index'));
+	if(count($params)==1 && !is_numeric($params[0]))
+		return(array('page'=>'archives','category'=>$params[0]));
+	return(array('page'=>'image','map'=>$params));
+}
+
 ?>

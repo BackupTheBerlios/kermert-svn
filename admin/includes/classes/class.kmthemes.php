@@ -28,7 +28,7 @@ class kmThemes
 	function kmThemes()
 	{
 		$this->themes_dir = km_appdir.km_themesdir;
-		$this->search('theme.txt',$this->themes_dir);
+		$this->search('theme',$this->themes_dir);
 		
 	}
 	
@@ -43,7 +43,7 @@ class kmThemes
 	          	{
 					if(is_file($directory."/".$file))
 					{
-	                   		if(preg_match("/$target/i", $file))
+	                   		if(preg_match("/$target\.txt/i", $file))
 	                   		{
 	                         	//echo "<a href=\"$directory/$file\">$file</a><br>";
 	                         	$this->_list[] = array('directory'=>$directory,'name'=>str_replace($this->themes_dir.'/',"",$directory));
@@ -66,8 +66,7 @@ class kmThemes
 		if($this->_step+1 > count($this->_list))
 			return(false);
 		$desc = $this->_list[$this->_step]['directory'].'/theme.txt';
-		
-		$this->_curtheme['meta'] = iniFile::read($desc,true);
+		$this->_curtheme['meta'] = @iniFile::read($desc,true);
 		$this->_curtheme['name'] = $this->_list[$this->_step]['name'];
 		
 		$this->_step++;
