@@ -22,7 +22,7 @@
 <ul>
 	<li><a href="./config.php">Paramètres</a></li>
 	<li><a href="./users.php">Utilisateurs</a></li>
-	<li><a href="./config.php?op=themes">Thèmes</a></li>
+	<li><a href="./themes.php">Thèmes</a></li>
 	<li><a href="./config.php?op=info">Informations</a></li>
 </ul>
 

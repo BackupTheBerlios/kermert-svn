@@ -21,15 +21,9 @@
 # ***** END LICENSE BLOCK *****
 
 include_once(dirname(__FILE__).'/prepend.php');
-include_once(dirname(__FILE__).'/includes/classes/class.kmuser.php');
-//include_once(dirname(__FILE__).'/includes/wrappers/wrapper.kmuser.php');
-require_once(dirname(__FILE__).'/includes/Sajax.php');
+include_once(dirname(__FILE__).'/includes/classes/class.kmthemes.php');
 
-$sajax_remote_uri = './includes/wrappers/wrapper.kmuser.php';
-sajax_init();
-sajax_export("userList");
-sajax_handle_client_request();
-
+$themes_manager = new kmThemes();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -37,20 +31,10 @@ sajax_handle_client_request();
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="./styles/themes.css" media="screen" />
 <title>Administration</title>
-<script type="text/javascript" src="./includes/tools.js"></script>
-<script type="text/javascript" src="./includes/sajax_extra.js"></script>
-<script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
-<script language="javascript" type="text/javascript" src="./includes/wrappers/wrapper.kmuser.js"></script>
-<script language="javascript" type="text/javascript">
-<!--
-<?
-sajax_show_javascript();
-?>
--->
-</script>
 </head>
-<body onload="javascript:initPage();">
+<body>
 <table width="100%" class="Framework" cellspacing="0" cellpadding="0">
 <tr>
 <td colspan="2">
@@ -82,30 +66,26 @@ sajax_show_javascript();
 
 
 <div class="post">
-<h2>Utilisateurs</h2>
-<p class="modified"><b>&middot; Gestion</b></p>
-<p id="listusers">
-</p>
+<h2>Thèmes</h2>
+<p class="modified"><b>&middot; Liste des thèmes</b></p>
 <p>
-	<form method="POST">
-		<fieldset>
-			<legend><span id="legend_txt"></span></legend>
-			<p><label for="nickname">Pseudo:</label><br/>
-			<input type="text" id="nickname" name="nickname"/></p>
-			<p><label for="login">Login:</label><br/>
-			<input type="text" id="login" name="login"/></p>
-			<p><label for="password">Mot de passe:</label><br/>
-			<input type="password" id="password" name="password"/></p>
-			<p><label for="email">E-mail:</label><br/>
-			<input type="text" id="email" name="email"/></p>
-			<p><input type="button" name="bsubmit" id="bsubmit" onclick="javascript:validateForm();"/></p>
-		</fieldset>
-	</form>
-</p>
-<div id="placeholder" style="display: none;">
-	<div class="imageitem">
-		<span id="name"></span>
+<?php while($themes_manager->getThemesList()): ?>
+<div class="imageitem">
+	<h4><?php $themes_manager->getThemeDesc('name');?></h4>
+	<div class="imagedetail">
+		<div class="imagethumbleft"><img src="./<?php $themes_manager->getThemePreview();?>"/></div>
+		<div>
+		<ul>
+			<li>Auteur: <?php $themes_manager->getThemeDesc('author');?></li>
+			<li>Version: <?php $themes_manager->getThemeDesc('version');?></li>
+			<li>Description:<br/> <?php $themes_manager->getThemeDesc('description');?></li>
+		</ul>
+		</div>
+		<div style="clear:both;"></div>
 	</div>
+</div>
+<?php endwhile; ?>
+</p>
 </div>
 </td>
 </tr>

@@ -37,10 +37,15 @@ function userElement()
 function initPage()
 {
 	initFormAddUser();
-	var liste = getElement('listusers');
+	var par = getElement('listusers');
+	var liste = document.createElement("ul");
 	var newNode = document.createElement("li");
 	newNode.innerHTML='coucou';
 	liste.appendChild(newNode);
+	var newNode2 = document.createElement("li");
+	newNode2.innerHTML='coucou';
+	liste.appendChild(newNode2);
+	par.appendChild(liste);
 }
 
 

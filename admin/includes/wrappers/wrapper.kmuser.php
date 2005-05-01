@@ -19,4 +19,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # ***** END LICENSE BLOCK *****
+include_once(dirname(__FILE__).'/prepend.php');
+require_once(dirname(__FILE__).'/includes/Sajax.php');
+
+sajax_init();
+sajax_export("userList");
+sajax_handle_client_request();
 ?>
