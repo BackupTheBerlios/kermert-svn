@@ -28,6 +28,8 @@ class xkermert extends kermert
      var $_previd;
      var $_nextid;
      var $_curid;
+     var $_params;
+     var $mode;
 
      function xkermert($con)
      {
@@ -36,8 +38,11 @@ class xkermert extends kermert
 
      function init($params)
      {
+     	$this->_params = $params;
+     	$this->mode = $params['page'];
           if($params['page']=='image')
           {
+          	echo "image";
                // Home Page?
                if((isset($params['index'])&& $params['index']==true))
                {
@@ -49,11 +54,16 @@ class xkermert extends kermert
                     $image = explode('-',$params['map'][3]);
                     $sql = "SELECT DATE_FORMAT(datetime,'%Y/%m/%d') AS image_date, qualifieduri, id FROM ".km_dbprefix."images WHERE id=".$image[0];
                }
+               
                $rs = $this->con->select($sql);
                $this->_curid = $rs->f('image_date').'/'.$rs->f('id').'-'.$rs->f('qualifieduri');
                $this->loadSingleImage($rs->f('id'));
                $this->initLinks($rs->f('id'));
                return;
+          }
+          elseif($params['page']=='archives')
+          {
+          	$this->loadImagesList('all','1');
           }
      }
 
@@ -83,6 +93,13 @@ class xkermert extends kermert
                $wiki_parser = new Wiki2xhtml();
                return($wiki_parser->transform($this->getField('body')));
           }
+     }
+     
+     function xgetField($field)
+     {
+     	if($this->params['page']=='image')
+     		return($this->getField($field));
+     	
      }
 }
 ?>

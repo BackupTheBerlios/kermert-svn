@@ -35,13 +35,16 @@ class kermert
 		$this->imageslist = $this->con->select($sql,'kmImage');
 		$this->imageslist->moveStart();
 	}
-	function loadImagesList($mode='all',$offset=0,$order='DESC')
+	function loadImagesList($mode='all',$status='',$offset=0,$order='DESC')
 	{
+		$where = '';
 		if($mode=='all')
 			$elements = '*';
 		else
 			$elements = 'id,datetime,headline';
-		$sql = 'SELECT '.$elements.' FROM '.km_dbprefix.'images ORDER BY datetime '.$order;
+		if($status!='')
+			$where = "WHERE status='".$status."'";
+		$sql = 'SELECT '.$elements.' FROM '.km_dbprefix.'images '.$where.' ORDER BY datetime '.$order;
 		$this->imageslist = $this->con->select($sql,'kmImage');
 		$this->imageslist->move($offset);
 	}
@@ -80,7 +83,9 @@ class kermert
 	
 	function getField($field)
 	{
-		return($this->imageslist->field($field));
+		if(is_object($this->imageslist))
+			return($this->imageslist->field($field));
+		return;
 	}
 }
 ?>

@@ -30,6 +30,7 @@ function km_config($key='url')
           case 'theme': echo km_appurl.km_themesdir.km_theme; break;
           case 'rss': echo km_appurl.'rss.php'; break;
           case 'sitename': echo km_appname; break;
+          case 'desc': echo km_desc; break;
           case 'archives': echo km_appurl.km_script.getURISep().'/archives'; break;
           default: break;
      }

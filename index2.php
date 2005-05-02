@@ -32,8 +32,10 @@ else
 
 $params = explode('/',$params);
 array_shift($params);
-print_r($params);
+//print_r($params);
+
 $page_mode = getMode($params);
+print_r($page_mode);
 $mode = $page_mode['page'];
 $comments_allowed = $page_mode['comments'];
 
@@ -41,4 +43,6 @@ $photoblog->init($page_mode);
 
 
 include_once(km_appdir.km_themesdir.km_theme.'/template.php');
+
+//phpinfo();
 ?>
