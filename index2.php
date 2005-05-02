@@ -21,16 +21,24 @@
 # ***** END LICENSE BLOCK *****
 
 include_once(dirname(__FILE__).'/includes/prepend.php');
+include_once(dirname(__FILE__).'/includes/layout.php');
+
+$photoblog = new xkermert($con);
 
 if(km_varmode=='path_info')
 	$params = $_SERVER['PATH_INFO'];
 else
 	$params = $_SERVER['QUERY_STRING'];
-	
+
 $params = explode('/',$params);
 array_shift($params);
 print_r($params);
 $page_mode = getMode($params);
 $mode = $page_mode['page'];
+$comments_allowed = $page_mode['comments'];
+
+$photoblog->init($page_mode);
+
+
 include_once(km_appdir.km_themesdir.km_theme.'/template.php');
 ?>

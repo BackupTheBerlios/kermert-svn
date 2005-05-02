@@ -74,10 +74,25 @@ function getMode($params)
 {
 	// No params: index page
 	if(count($params)==0)
-		return(array('page'=>'index'));
+		return(array('page'=>'image','index'=>true,'comments'=>km_indexcomments));
+	// One non-numerci param: Archives or category page.
 	if(count($params)==1 && !is_numeric($params[0]))
 		return(array('page'=>'archives','category'=>$params[0]));
-	return(array('page'=>'image','map'=>$params));
+     // Fully qualified URI: One particular image
+	if(count($params)==4)
+	     return(array('page'=>'image','map'=>$params,'comments'=>1));
+	// Too much parameters! redirecting to homepage
+	if(count($params)>4)
+	     return(array('page'=>'image','index'=>true,'comments'=>km_indexcomments));
+	// Everything else: year/month view
+     return(array('page'=>'archives','map'=>$params));
+}
+
+function getURISep()
+{
+     if(km_varmode=='get')
+          return('?');
+     return;
 }
 
 ?>
