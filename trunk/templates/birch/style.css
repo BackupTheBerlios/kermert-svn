@@ -1,0 +1,352 @@
+/*** Canvas ***/
+
+body {
+	background : #C6B380;
+	font : 10px/14px geneva, verdana, arial, sans;
+	color : #fff;
+	padding : 30px;
+	text-align : center;
+	}
+	
+a:link, a:active {
+	text-decoration : none;
+	color : #8B0000;
+	}
+	
+a:visited {
+	text-decoration : none;
+	color : #824646;
+	}
+	
+a:hover {
+	color : #520000;
+	}
+	
+ul {
+	line-height : 20px;
+	}
+	
+#content {
+	text-align : left;
+	margin : 0 auto;
+	width : 870px;
+	}	
+	
+#sidebar {
+	float : left;
+	width : 28%;
+	text-align : center;
+	}
+
+#main, #colophon {
+	float : left;
+	width : 72%;
+	padding : 0 0 16px;
+	}
+	
+#colophon {
+	margin-top : -38px;
+	padding-top : 38px;
+	font-size : 11px;
+	}
+
+#page-title {
+	font : 24px/26px "Gill Sans", "Lucida Grande", Arial, Verdana, sans;
+	color : #fff;
+	margin : 2px;
+	}
+	
+#tagline {
+	font : 14px/16px "Gill Sans", "Lucida Grande", Arial, Verdana, sans;
+	color : #574617;
+	margin : 2px;
+	}
+	
+#nav {
+	margin : 100px 0 0;	
+	font : 19px/21px "Gill Sans", "Lucida Grande", Arial, Verdana, sans;
+	text-transform : lowercase;
+	}
+	
+#nav a:link, #nav a:active, #nav a:visited {
+	display : block;
+	margin : 0 0 20px;
+	text-decoration : none;
+	color : #FFF8E5;
+	}
+	
+#nav a:hover {
+	color : #574617;
+	}
+	
+#badges {
+	margin : 315px 0 0;
+	}
+	
+#powered-by-birch {
+	font : 11px/14px "Gill Sans", "Lucida Grande", Arial, Verdana, sans;
+	text-transform : uppercase;
+	letter-spacing : 3px;
+	}
+	
+#copyright {
+	font : 10px/12px "Gill Sans", "Lucida Grande", Arial, Verdana, sans;
+	color : #fff;
+	margin : 4px;
+	}
+	
+#photo img {
+	padding : 8px;
+	margin : 0 4px 14px 0;
+	background : #fff;
+	border-top : 1px solid #B5A168;
+	border-left : 1px solid #B5A168;
+	border-right : 1px solid #887235;
+	border-bottom : 1px solid #887235;
+	}
+	
+#photo img.vert {
+	margin : 0  64px 10px 60px;
+	}
+	
+#photo-arrow-left {
+	display : block;
+	position : absolute;
+	top : 47px;
+	margin-left : 9px;
+	width : 300px;
+	height : 450px;
+	}
+	
+#photo-arrow-left:hover {
+	background : url("images/photo_arrow_left.png") no-repeat top left;
+	}
+	
+#photo-arrow-right {
+	display : block;
+	position : absolute;
+	top : 47px;
+	margin-left : 309px;
+	width : 300px;
+	height : 450px;
+	}
+	
+#photo-arrow-right:hover {
+	background : url("images/photo_arrow_right.png") no-repeat top right;
+	}	
+	
+#caption {
+	margin : 0 35px 30px;
+	}
+	
+#caption-title {
+	font-size : 9px;
+	color : #381D00;
+	text-transform : uppercase;
+	margin : 0 0 4px;
+	}
+	
+#previous-photos {
+	margin : 0 0 0 19px;
+	}
+	
+#arrow-left {
+	display : block;
+	float : left;
+	margin : 12px 20px 0 0;
+	width : 32px;
+	height : 33px;
+	background : url("images/arrow_light.png") no-repeat 0 0;
+	}
+	
+#arrow-left:hover {
+	background-position : 0 -33px;
+	}
+	
+#arrow-left-blank {
+	display : block;
+	float : left;
+	margin : 12px 20px 0 0;
+	width : 32px;
+	height : 33px;	
+	}
+	
+#arrow-right {
+	display : block;
+	float : left;
+	margin : 12px 0 0 20px;
+	width : 32px;
+	height : 33px;
+	background : url("images/arrow_light.png") no-repeat -32px 0;
+	}
+	
+#arrow-right:hover {
+	background-position : -32px -33px;
+	}
+	
+#arrow-right-blank {
+	display : block;
+	float : left;
+	margin : 12px 20px 0 0;
+	width : 32px;
+	height : 33px;	
+	}
+	
+#previous-photos img {
+	float : left;
+	padding : 3px;
+	margin : 0 11px;
+	background : #fff;
+	border-top : 1px solid #B5A168;
+	border-left : 1px solid #B5A168;
+	border-right : 1px solid #887235;
+	border-bottom : 1px solid #887235;
+	}
+	
+#previous-photos img:hover {
+	background : #FDBEB4;
+	border-top : 1px solid #B5A168;
+	border-left : 1px solid #B5A168;
+	border-right : 1px solid #887235;
+	border-bottom : 1px solid #887235;
+	}
+	
+#previous-photos img.selected {
+	background : #FFC834;
+	}
+
+#previous-photos img.selected:hover {
+	background : #FFC834;
+	}	
+
+#previous-photos img.vert {
+	margin : 0 25px;
+	}
+
+.spacer {
+	float : left;
+	width : 74px;
+	height : 56px;
+	margin : 0 11px;
+	}
+	
+/*** Styles for archives/index.cgi ***/
+
+#recent h3,
+#dates h3 {
+	color : #fff;
+	}
+	
+#recent h4,
+#dates h4 {
+	float : none;
+	clear : both;
+	padding : 8px 0 0;
+	color : #E9DFC5;
+	}
+
+#recent img {
+	float : left;
+	border : 0;
+	padding : 3px;
+	background : #fff;
+	border-top : 1px solid #B5A168;
+	border-left : 1px solid #B5A168;
+	border-right : 1px solid #887235;
+	border-bottom : 1px solid #887235;
+	margin : 0 9px 12px;	
+	}
+	
+#recent img:hover {
+	background : #FDBEB4;
+	}
+	
+#recent img.vert {
+	margin-left : 23px;
+	margin-right : 23px;
+	}
+	
+#dates {
+	clear : both;
+	padding-top : 10px;
+	}
+	
+#dates ul {
+	float : none;
+	clear : both;
+	padding : 0;
+	margin : 0;
+	}
+	
+#dates li {
+	float : none;
+	clear : both;
+	list-style-type : none;
+	}
+	
+#dates li a:link,
+#dates li a:visited,
+#dates li a:active {
+	display : block;
+	float : left;
+	width : 75px;
+	}	
+	
+#dates li span {
+	display : block;
+	float : left;
+	width : 16px;
+	height : 12px;
+	margin-top : 3px;
+	background : #CEBE93;
+	margin-left : 4px;
+	}
+	
+#dates li span.plus {
+	display : block;
+	float : left;
+	width : 16px;
+	height : 12px;
+	margin-top : -1px;
+	background : transparent;
+	margin-left : 4px;
+	font-size : 12px;
+	font-weight : bold;
+	color : #CEBE93;
+	}	
+	
+/*** Styles for colophon.html ***/
+
+#colophon p {
+	line-height : 22px;
+	color : #fff;
+	margin-right : 50px;
+	}
+
+
+/* Hacks that force certain browsers to display the page correctly. */
+
+	/* The following rules are applied to IE Mac only */ /*\*//*/
+
+
+	/* */
+	/* The following rules are applied to IE Win only. */ /*\*/
+	
+	* html #photo-arrow-left,		/* IE Win can't seem to deal with the transparent link. */
+	* html #photo-arrow-right {
+		display : none;
+		}
+	
+	* html #arrow-left	{ 
+		background : transparent; 
+		filter : progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/arrow_light.png',sizingMethod='crop');
+		cursor : hand;
+		}
+		
+	* html #arrow-right	{ 
+		background : transparent; 
+		filter : progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/arrow_light_right.png',sizingMethod='crop');
+		cursor : hand;
+		}
+
+	/* */

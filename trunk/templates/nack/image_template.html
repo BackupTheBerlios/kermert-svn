@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	 <meta name="PBO.auth" content="23dd1216777eacc1ae51beb076ebb96c" />
+     <title><SITE_TITLE></title>
+     <link href="templates/nack/style.css" rel="stylesheet" type="text/css" />
+     <link rel="alternate" type="application/rss+XML" title="RSS 2.0" href="index.php?x=rss" />
+     <script language='javascript' type='text/javascript'>
+     <!-- BEGIN
+     function flip(rid)
+     {
+     current=(document.getElementById(rid).style.display == 'none') ? 'block' : 'none';
+     document.getElementById(rid).style.display = current;
+     }
+     function alternate()
+     {
+     alpha=(document.getElementById('centered').style.display == 'none') ? 'block' : 'none';
+     beta=(document.getElementById("wrapper").style.display == 'none') ? 'block' : 'none';
+     //alert(alpha);
+     document.getElementById("centered").style.display = alpha;
+     document.getElementById("wrapper").style.display = beta;
+     }
+     // End -->
+     </script>
+</head>
+<body>
+<div id="wrapper">
+     <div id="background">
+          <div id="content">
+               <a href="index.php"><img src="templates/nack/images/headers/header_inthebox.jpg" width="600" alt="Aspirant Artiste Photoblog"/></a>
+               <br />
+               <div class="navbar">
+                         <span style="float:left;width:190px">
+                               <a href="index.php?showimage=<IMAGE_PREVIOUS_ID>">< previous < </a>
+                               | <a href="index.php">actuelle</a>
+                               | <a href="index.php?showimage=<IMAGE_NEXT_ID>"> > next ></a>
+                         </span>
+                         <span style="float:left;width:405px;text-align:right;">
+                              <a href="<SITE_BROWSELINK>">archives</a>
+                               / <a href="http://aspirantartiste.free.fr/about/about.html">about</a>
+                               / <a href="/galleries">Galleries</a>
+                               / <a href="mailto:aspirantartiste@free.fr">contact</a>
+                         </span>
+                    </div>
+               <div id="current_image">
+
+                    <a href="#" onclick="javascript:alternate();">
+                         <img id="image" src="images/<IMAGE_NAME>" width="590" alt="<IMAGE_TITLE>" title="Voir en taille rŽelle" />
+                    </a>
+               </div>
+               <div id="sub-wrapper">
+                    <div class="navbar">
+                         <span style="float:left;width:190px">
+                               <a href="index.php?showimage=<IMAGE_PREVIOUS_ID>">< previous < </a>
+                               | <a href="index.php">actuelle</a>
+                               | <a href="index.php?showimage=<IMAGE_NEXT_ID>"> > next ></a>
+                         </span>
+                         <span style="float:left;width:405px;text-align:right;">
+                              <a href="<SITE_BROWSELINK>">archives</a>
+                               / <a href="http://aspirantartiste.free.fr/about/about.html">about</a>
+                               / <a href="/galleries">Galleries</a>
+                               / <a href="mailto:aspirantartiste@free.fr">contact</a>
+                         </span>
+                    </div>
+                    <div class="top-wrapper">
+                         <div class="texte">
+                              <h2>
+                                   <IMAGE_TITLE><br/>
+                              </h2>
+                              <br/>
+                              <IMAGE_NOTES>
+                         </div>
+                         <div class="exif">
+                              <h3>Facts:</h3>
+                              Date: <IMAGE_DATE><br/>
+                              Categories: <IMAGE_CATEGORY_ALL><br/>
+                              <a href="#exifs" onclick="javascript:flip('exifs');">View Exif</a><br/>
+                              <a href="#co" onclick="javascript:flip('commentaires');">View comments</a> (<IMAGE_COMMENTS_NUMBER>)<br/>
+                              <!--
+                              
+                              -->
+                         </div>
+                         
+                         <br />
+                         <br /><br /><br />
+                    </div>
+                    <div style="clear:both;"><hr class="separateur"/></div>
+                    <div id="exifs"><a id="exif"/>
+                        <h4>Exif:</h4>
+                           <EXIF_DATA>
+                        <a href="#top" onclick="javascript:flip('exifs');return(true);">Hide</a>
+                        <div style="clear:both;"><hr class="separateur"/></div>
+                        <script language='javascript' type='text/javascript'>flip('exifs');</script>
+                    </div>
+                    <div id="commentaires"><a id="co"/>
+                    <h4>Commentaires</h4>
+                    <span class="comments"><IMAGE_COMMENTS></span>
+                    <form method='post' action='index.php?x=save_comment' name='commentform' >
+                        <input type='hidden' name='parent_id' value='<IMAGE_ID>' />
+                    <fieldset>
+                        <legend>Ajouter votre commentaire</legend>
+                        <div style="float:right;">
+                            <label for="url">Url:</label><br/>
+                            <input type='text' name="url" id="url" tabindex="2"/>
+                        </div>
+                        <label for="name">Pseudo:</label><br/>
+                        <input type="text" name="name" value="" id="name" tabindex="1"/>          
+                        <div style="clear:both;">
+                            <label for="message">Commentaire:</label><br/>
+                            <textarea name='message' cols="57" rows='5' id="message" tabindex="3"></textarea>
+                        </div>
+                        <input type="submit" value="Commenter" tabindex="5"/><input type='checkbox' value='set' name='vcookie' tabindex="4"/>Se souvenir de moi
+                    </fieldset>
+                </form>
+                <div style="clear:both;"><hr class="separateur"/></div>
+                    <script language='javascript' type='text/javascript'>flip('commentaires');</script>
+                    </div>
+                    
+                <div style="text-align:center">
+                    <!-- Thumbnails -->
+                    <THUMB_LIST>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+        <div id="metabar">
+            				<p>
+				<a href='http://www.photoblogs.org/'><img src='http://buttons.photoblogs.org/photoblogs.gif' alt='Photoblogs.org' title='Photoblogs.org' border='0' /></a>
+				<a href='http://www.photoblogs.org/profile/aspirantartiste.free.fr/'><img src='http://buttons.photoblogs.org/listed.gif' alt='View My Profile' title='View My Profile' border='0' /></a>
+				
+				<a href="http://www.photoblogring.org"><img src="http://www.uncommondepth.com/images/photoblogring.gif" alt="Photoblog ring" border="0"/></a>
+				<a href="http://www.ringsurf.com/netring?ring=aporeality;action=addform">Join</a> |
+				<a href="http://www.ringsurf.com/netring?ring=aporeality;action=rand">Random</a> |
+				<a href="http://www.ringsurf.com/netring?ring=aporeality;action=list">List</a>
+			</p>
+<p>
+
+<a href="http://www.paname-ensemble.com/" title="Blog Metro"><img width=80 src="http://www.paname-ensemble.com/paris-fr/images/metro/mini_ban_pe_moyen.gif" border=0></a>  
+<a href="http://www.paname-ensemble.com/paris-fr/php/metro/liste_blog_ligne.php?nb_ligne=12"><img src="http://www.paname-ensemble.com/paris-fr/images/metro/ligne12.gif" border=0></a><a href="http://www.paname-ensemble.com/paris-fr/php/metro/liste_blog_ligne.php?nb_ligne=C">
+<img src="http://www.paname-ensemble.com/paris-fr/images/metro/rer_c.gif" border=0></a>
+   
+<a href="http://www.ebtb.info/parisblog/" target="_blank">
+<img src="http://www.ebtb.info/parisblog/img/parisblogdevo.jpg" border=0 width=79></a>
+</p>
+<p>
+<a href="http://eoliens.apinc.org/" hreflang="fr"  title="Eoliens : Un Annuaire Gratuit Et Sans But Lucratif De Sites De Createurs Et D'Artistes">
+<img src="http://eoliens.apinc.org/visuels/eoliens80x15.png" alt="[Annuaire Eoliens]" width="80" height="15" />
+</a>
+   
+Technorati cosmos 
+<a href="http://www.technorati.com/cosmos/search.html?url=http://aspirantartiste.free.fr/">
+<img src="http://static.technorati.com/images/bubble_icon.gif" border=0></a>
+<a href="http://www.technorati.com/cosmos/search.html?url=http://aspirantartiste.free.fr/photoblog/">
+<img src="http://static.technorati.com/images/bubble_icon.gif" border=0></a>
+</p>
+<p>
+<a href="http://www.spreadfirefox.com/?q=affiliates&amp;id=0&amp;t=179"><img border="0" alt="Get Thunderbird!" title="Get Thunderbird!" src="http://sfx-images.mozilla.org/affiliates/thunderbird/thunderbird_blog2.png"/></a>
+   
+<a href="http://www.spreadfirefox.com/?q=affiliates&amp;id=0&amp;t=85"><img border="0" alt="Get Firefox!" title="Get Firefox!" src="http://sfx-images.mozilla.org/affiliates/Buttons/80x15/firefox_80x15.png"/></a>
+   
+<a href="http://macroday.com/"><img border="0" alt="Sunday is Macro Day" title="Sunday is Macro Day" src="http://macroday.com/macroday.gif"/></a>
+   
+<a href="http://www.photofriday.com/"><img border="0" alt="Photo Friday" title="Photo Friday" src="http://www.photofriday.com/buttons/jojofalk.gif"/></a>
+</center>
+</ul>
+</p>
+        </div>
+        <div id="footer">
+			@spirant @rtiste Photoblog / <a href="./admin/index.php">Admin area</a> /
+			<a href="<SITE_REFLINK>">Referers</a> / <SITE_RSS_LINK> /
+			<a href="http://www.pixelpost.org/">Powered by Pixelpost</a><!-- STATISTIQUES!!!!  NE PAS TOUCHER OU REPRENDRE LES 2 LIGNES SUIVANTES POUR LES ACTIVER -->
+<script type="text/javascript" src="http://aspirantartiste.free.fr/stats/php-stats.js.php"></script>
+<noscript><img src="http://aspirantartiste.free.fr/stats/php-stats.php" border="0" alt=""></noscript>
+<!-- FIN DES STATISTIQUES -->
+		</div>
+    </div>
+    <div id="centered">
+        <a href="#" onclick="javascript:alternate();"><img id="imagebig" src="images/<IMAGE_NAME>" alt="<IMAGE_TITLE>" title="Retour au photoblog" /></a>
+    </div>
+    <script language='javascript' type='text/javascript'>flip("centered");</script>
+</body>
+</html> 
