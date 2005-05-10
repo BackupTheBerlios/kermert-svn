@@ -1,0 +1,100 @@
+<!-- start -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title><SITE_TITLE> - Refererlog</title>
+
+<style type="text/css">
+body {	
+	background:#f5f5f5;
+	margin:10px;
+	padding:0px;
+	text-align:center;
+	font-size:10px;
+	color:#444;
+	}
+#wrapper {
+	margin:0px auto;
+	padding-top:0px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom:0px;
+	width:610px;
+	text-align:left;
+	}
+#navigation {
+    width:590px;
+    padding:10px;
+    background:#fff;
+    font-size:10px;
+    border-left:1px solid #999;
+    border-right:1px solid #999;
+    border-top:1px solid #999;
+    border-bottom:1px solid #999;
+    }
+#navigation:hover {
+    background:#f5f5f5;
+    }
+#referers {
+    width:590px;
+    padding:10px;
+    background:#fff;
+    font-size:10px;
+    border-left:1px solid #999;
+    border-right:1px solid #999;
+    border-top:0px;
+    border-bottom:1px solid #999;
+    }
+#referers ul {
+	list-style-type:none;
+	margin:0px;
+	padding:10px;
+	}
+#referers li {
+	display:block;
+	margin:0px;
+	color:#444;
+	text-decoration:none;
+	padding:3px;
+	}
+#referers li a {
+	color:#444;
+	text-decoration:none;
+	}
+#referers li:hover {
+	background:#f5f5f5;
+	}
+#referers li a:hover {
+	background:#f5f5f5;
+	}
+</style>
+<script language='javascript' type='text/javascript'>
+<!-- BEGIN
+function flip(rid)
+{
+    current=(document.getElementById(rid).style.display == 'none') ? 'block' : 'none';
+    document.getElementById(rid).style.display = current;
+}
+// End -->
+</script>
+</head>
+<body>
+<div id="wrapper">
+
+<div id="navigation">
+<b>REFERERS LAST SEVEN DAYS</b> <br />
+<SITE_VISITORNUMBER> visitors all time<br />
+<a href="index.php">Home</a>
+</div>
+
+<div id="referers">
+<REFERERS>
+</div>
+</div>
+<a href="http://validator.w3.org/check/referer">Valid XHTML</a> | 
+<a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a> | 
+<SITE_RSS_LINK>
+</body>
+</html>
+<!-- end -->

@@ -1,0 +1,3 @@
+author = pivwan
+version = 1.0
+name = First template

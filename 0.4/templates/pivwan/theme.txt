@@ -1,0 +1,4 @@
+author = pivwan
+version = 1.0
+name = First template
+description = First template coded for Kermert. This description also accepts <strong>HTML</strong> tags!
