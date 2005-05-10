@@ -26,14 +26,5 @@ class kmImage extends Recordset
 {
 	var $categories = array();
 	
-	function kmImage($data='')
-	{
-		if(is_array($data))
-		{
-			parent::RecordSet($data);
-		}
-	}
-	
-	
 }
 ?>

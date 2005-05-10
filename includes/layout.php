@@ -70,8 +70,11 @@ function km_nextImage($text="Next",$id='',$class='')
 
 function km_imageTitle($string='%s')
 {
+     /*
      global $photoblog;
      echo sprintf($string,$photoblog->getField('title'));
+     */
+     echo sprintf($string,$GLOBALS['imagetitle']);
 }
 
 function km_imageBody($string="<p>%s</p>")
@@ -104,6 +107,40 @@ function km_Permalink($text="Permalink",$id='',$class='')
           if($class!='') $link.= ' class="'.$class.'"';
           $link.= '>'.$text.'</a>';
           echo $link;
+     }
+}
+
+function km_monthList($item='',$around='<li>%s</li>')
+{
+     global $photoblog;
+     $months = $photoblog->getMonthList();
+     foreach($months as $month)
+     {
+          if($item!='')
+          {
+               for($i=0;$i<$month['count'];$i++)
+                    $item_view.= $item;
+          }
+          else
+               $item_view = '('.$month['count'].')';
+          echo sprintf($around,'<a href="'.km_appurl.km_script.getURISep().'/'.$month['name'].'">'.$month['name'].'</a> '.$item_view);
+     }
+
+}
+
+function km_imageCategories($id='',$class='')
+{
+     global $photoblog;
+     $photoblog->catlist->moveStart();
+     while(!$photoblog->catlist->EOF())
+     {
+          $link = '<a href="'.km_appurl.km_script.getURISep().'/'.$photoblog->catlist->f('qualifieduri').'"';
+          if($id!='') $link.= ' id="'.$id.'"';
+          if($class!='') $link.= ' class="'.$class.'"';
+          $link.= '>'.$photoblog->catlist->f('name').'</a>';
+          echo '<li>'.$link.'</li>';
+
+          $photoblog->catlist->moveNext();
      }
 }
 ?>

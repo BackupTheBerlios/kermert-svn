@@ -54,17 +54,52 @@ class xkermert extends kermert
                     $image = explode('-',$params['map'][3]);
                     $sql = "SELECT DATE_FORMAT(datetime,'%Y/%m/%d') AS image_date, qualifieduri, id FROM ".km_dbprefix."images WHERE id=".$image[0];
                }
-               
+
                $rs = $this->con->select($sql);
                $this->_curid = $rs->f('image_date').'/'.$rs->f('id').'-'.$rs->f('qualifieduri');
                $this->loadSingleImage($rs->f('id'));
+               $this->setGlobals(array('imagetitle'=>$this->getField('title')));
                $this->initLinks($rs->f('id'));
                return;
           }
           elseif($params['page']=='archives')
           {
-          	$this->loadImagesList('all','1');
+               $this->loadRecentImages($params['category']);
+               /*
+               if((isset($params['category']) && $params['category']!='' && $params['category']!='archives'))
+               {
+                    // Category mode.
+                    $this->loadImagesbyCat($params['category']);
+               }
+               elseif((isset($params['category']) && $params['category']!='' && $params['category']=='archives'))
+               {
+                    //$this->loadImagesList('all','1');
+                    $this->loadRecentImages('archives');
+               }
+               */
           }
+     }
+
+     function loadImagesbyCat($category)
+     {
+          $ids = '';
+          $sql = "SELECT DISTINCT image_id FROM ".km_dbprefix."catbypost, ".km_dbprefix."categories WHERE ".km_dbprefix."catbypost.cat_id=".km_dbprefix."categories.id AND ".km_dbprefix."categories.qualifieduri='".$category."'";
+          $this->imagesbycat = $this->con->select($sql);
+          $this->imagesbycat->moveStart();
+     }
+
+     function loadRecentImages($category)
+     {
+
+          $criterias = array(
+                         "columns"=>"id,image,title",
+                         "constraints"=>array("status"=>"'1'",
+                                             )
+                         );
+          if($category!='archives')
+               $criterias['constraints']['category']=$category;
+
+          $this->loadImages($criterias,10);
      }
 
      function initLinks($id)
@@ -82,6 +117,14 @@ class xkermert extends kermert
                $this->_nextid = $rs->f('image_date').'/'.$rs->f('next_id').'-'.$rs->f('qualifieduri');
      }
 
+     function setGlobals($globals)
+     {
+          if(is_array($globals))
+               foreach($globals as $key=>$value)
+                    $GLOBALS[$key]=$value;
+     }
+
+
      function formatImageBody()
      {
           if($this->getField('body_format')=='html')
@@ -94,12 +137,11 @@ class xkermert extends kermert
                return($wiki_parser->transform($this->getField('body')));
           }
      }
-     
+
      function xgetField($field)
      {
      	if($this->params['page']=='image')
      		return($this->getField($field));
-     	
      }
 }
 ?>

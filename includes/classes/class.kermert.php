@@ -34,19 +34,69 @@ class kermert
 		$sql = 'SELECT * FROM '.km_dbprefix.'images WHERE id='.$id;
 		$this->imageslist = $this->con->select($sql,'kmImage');
 		$this->imageslist->moveStart();
+		$this->loadImageCategories($id);
 	}
-	function loadImagesList($mode='all',$status='',$offset=0,$order='DESC')
+
+	function loadImages($params,$limit='',$order='DESC')
 	{
-		$where = '';
-		if($mode=='all')
-			$elements = '*';
-		else
-			$elements = 'id,datetime,headline';
-		if($status!='')
-			$where = "WHERE status='".$status."'";
-		$sql = 'SELECT '.$elements.' FROM '.km_dbprefix.'images '.$where.' ORDER BY datetime '.$order;
-		$this->imageslist = $this->con->select($sql,'kmImage');
-		$this->imageslist->move($offset);
+	     $sql = '';
+
+	     // Max count to retrieve
+	     if($limit!='')
+	          $limit = ' LIMIT 0,'.$limit;
+
+	     //Columns to retrieve.
+	     if((isset($params['columns']) && $params['columns']!=''))
+	          $columns = $params['columns'];
+	     else
+	          $columns = '*';
+
+	     // Search constraints
+	     if((isset($params['constraints']) && is_array($params['constraints'])))
+	     {
+               $constraints = "WHERE ";
+               foreach($params['constraints'] as $key=>$value)
+                    if($key!='category')
+                         $constraints.=$key.'='.$value.' ';
+
+          }
+          $sql = "SELECT ".$columns." FROM ".km_dbprefix."images ".$constraints."ORDER BY datetime ".$order.$limit;
+
+          // Do we have a category in constraints?
+          // If so, request must be completely modified!
+          if((isset($params['constraints']['category']) && $params['constraints']['category']!=''))
+          {
+               $sql = "SELECT ".$columns." FROM ".km_dbprefix."images ".$constraints."ORDER BY datetime ".$order.$limit;
+          }
+
+
+          echo $sql;
+          $this->imageslist = $this->con->select($sql,'kmImage');
+          echo $this->con->error();
+
+	}
+
+	function getMonthList()
+	{
+	     $months = array();
+	     $sql = "SELECT DISTINCT DATE_FORMAT(datetime,'%Y/%m') AS month, COUNT(*) AS cpt FROM ".km_dbprefix."images WHERE status='1' GROUP BY month ORDER BY datetime DESC";
+
+
+	     $rs = $this->con->select($sql);
+	     echo $this->con->error();
+	     while(!$rs->EOF())
+	     {
+	          $months[] = array('name'=>$rs->f('month'),'count'=>$rs->f('cpt'));
+	          $rs->moveNext();
+	     }
+          unset($rs);
+          return($months);
+	}
+
+	function loadImageCategories($id)
+	{
+          $sql = "SELECT ".km_dbprefix."categories.name, ".km_dbprefix."categories.qualifieduri  FROM ".km_dbprefix."catbypost, ".km_dbprefix."categories WHERE ".km_dbprefix."catbypost.cat_id=".km_dbprefix."categories.id AND ".km_dbprefix."catbypost.image_id=".$id;
+          $this->catlist = $this->con->select($sql);
 	}
 
 	function getCurrIdx()
@@ -56,7 +106,9 @@ class kermert
 
 	function movenext()
 	{
-		return $this->imageslist->moveNext();
+		$this->imageslist->moveNext();
+		$this->loadImageCategories($this->imagesliste->f('id'));
+		return;
 	}
 
 	function EOF()
@@ -70,17 +122,12 @@ class kermert
 	          return(false);
           return(true);
 	}
-	
+
 	function setSingleImage()
 	{
 		$this->imageslist = new kmImage();
 	}
-	
-	function getCategories()
-	{
-		$sql = "SELECT * FROM ".km_dbprefix."image2cat WHERE id=".$this->imageslist->field('id');
-	}
-	
+
 	function getField($field)
 	{
 		if(is_object($this->imageslist))
