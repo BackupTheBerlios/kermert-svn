@@ -20,7 +20,20 @@
 #
 # ***** END LICENSE BLOCK *****
 
-// Display functions for templates.
+/**
+ * Layout functions
+ * All these function are used in templates files.
+ * @version $Id$
+ * @author Pierre-Yves Gillier <pivwan@kermert.net>
+ */
+
+/**
+ * function km_config
+ * echoes current config parameters
+ * @param string $key Parameter to retrieve. Default <i>url</i>
+ * @return void
+ * @author Pierre-Yves Gillier
+ */
 
 function km_config($key='url')
 {
@@ -34,6 +47,7 @@ function km_config($key='url')
           case 'archives': echo km_appurl.km_script.getURISep().'/archives'; break;
           default: break;
      }
+     return;
 }
 
 function km_displayImage()
