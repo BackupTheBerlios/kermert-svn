@@ -20,6 +20,14 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Element of administration part of application.
+ *
+ * This page manages users of the application.
+ * @package Administration
+ * @subpackage GUI
+ */
+
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kmuser.php');
 //include_once(dirname(__FILE__).'/includes/wrappers/wrapper.kmuser.php');

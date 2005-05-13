@@ -20,6 +20,14 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Element of administration part of application.
+ *
+ * This page shows statistics of public part of application.
+ * It won't replace a full-featured stats app, but can be useful for bored users.
+ * @package Administration
+ * @subpackage GUI
+ */
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kmstats.php');
 

@@ -1,4 +1,13 @@
-<?php
+﻿<?php
+
+/**
+ * Element of administration part of application.
+ *
+ * This page manages authentication to administration.
+ * User will be redirected here if no session or cookie is found with user's data.
+ * @package Administration
+ * @subpackage GUI
+ */
 
 $auth_page = 'yes';
 include_once(dirname(__FILE__).'/prepend.php');

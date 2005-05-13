@@ -20,42 +20,26 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Element of administration part of application.
+ *
+ * This page manages image insertion and editing. It allows to upload a file (only from defined types), and add some
+ * properties. When saved, it will be stored in database.
+ * @package Administration
+ * @subpackage GUI
+ */
+
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.wiki2xhtml.php');
-require_once(dirname(__FILE__).'/includes/Sajax.php');
 
-// Sajax Init
+$post_id = (!empty($_REQUEST['post_id'])) ? $_REQUEST['post_id'] : '';
 
-sajax_init();
-$sajax_remote_uri = './includes/sajax/image.php';
+$kermert = new Kermert($con);
 
-sajax_export("ImageInfos","generateThumb");
-sajax_handle_client_request();
+if($post_id!='')
+	$kermert->setSingleImage();
+	
 
-$list_step = 9;
-
-$op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'image';
-$id = (!empty($_REQUEST['id'])) ? $_REQUEST['id'] : '';
-$posted = (!empty($_REQUEST['posted'])) ? $_REQUEST['posted'] : '';
-$offset = (!empty($_REQUEST['offset'])) ? $_REQUEST['offset'] : 0;
-
-$page_strings = array('action_title'=>'Nouvelle image','action_button'=>'Enregistrer','posted'=>'insert');
-
-$action_title = 'Nouvelle image';
-if($op=='image')
-{
-	if($posted=='update')
-	{
-		$kermert->updateImage($_REQUEST);
-	}
-	if($id!='')
-	{
-		$page_strings = array('action_title'=>'Modifier l\'image','action_button'=>'Modifier','posted'=>'update');
-		$kermert->loadSingleImage($id);
-	}
-	else
-		$kermert->setSingleImage();
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,16 +48,6 @@ if($op=='image')
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
 <script type="text/javascript" src="./includes/tools.js"></script>
-<script type="text/javascript" src="./includes/sajax_extra.js"></script>
-<script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
-<script language="javascript" type="text/javascript" src="./includes/wrappers/wrapper.image.js"></script>
-<script language="javascript" type="text/javascript">
-<!--
-<?
-sajax_show_javascript();
-?>
--->
-</script>
 <title>Administration</title>
 </head>
 <body>
@@ -113,9 +87,6 @@ sajax_show_javascript();
 <div id="sajaxmsgbox">
 </div>
 <p>
-<?php
-if($op=='image') {
-?>
 <form method="POST" action="./file_upload.php" id="form_manage" enctype="multipart/form-data" target="ope_iframe">
 <?php echo form::hidden('op','uploadfile');?>
 <?php echo form::hidden('image_id',getImageid());?>
@@ -153,7 +124,7 @@ if($op=='image') {
      </fieldset>
 </form>
 </div>
-<form method="post" id="form_images">
+<form method="post" id="form_images" action="image.php">
 	<br/>
 	<fieldset>
 		<legend><?php echo $page_strings['action_title']?></legend>
@@ -205,7 +176,6 @@ if($op=='image') {
 	</fieldset>
 </form>
 <iframe src="blank.html" id="ope_iframe" name="ope_iframe" class="blankiframe"></iframe>
-<?php } ?>
 </p>
 </div>
 </td>

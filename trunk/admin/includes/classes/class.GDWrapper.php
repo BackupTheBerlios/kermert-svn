@@ -20,6 +20,14 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Wrapper to GD library.
+ *
+ * This class 
+ * @package Utils
+ * @subpackage Wrappers
+ */
+
 class GDWrapper
 {
 

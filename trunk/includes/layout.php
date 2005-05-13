@@ -23,16 +23,16 @@
 /**
  * Layout functions
  * All these function are used in templates files.
- * @version $Id$
+ * @see Kermert
+ * @package Templating
  * @author Pierre-Yves Gillier <pivwan@kermert.net>
  */
 
 /**
- * function km_config
+ * Function km_config <br/>
  * echoes current config parameters
- * @param string $key Parameter to retrieve. Default <i>url</i>
+ * @param string $key Parameter to retrieve.
  * @return void
- * @author Pierre-Yves Gillier
  */
 
 function km_config($key='url')
@@ -50,14 +50,27 @@ function km_config($key='url')
      return;
 }
 
+/**
+ * Displays current post's full-size image.
+ * @global Kermert
+ * @return void
+ */
 function km_displayImage()
 {
      global $photoblog;
 
      echo km_appurl.km_imagesdir.$photoblog->getField('image');
+     return;
 }
 
-function km_previousImage($text="Previous",$id='',$class='')
+/**
+ * Displays link to previous image.
+ * @param string $text Text to be displayed in link.
+ * @param string $class CSS class to use.
+ * @param string $id Id of link.
+ * @return void
+ */
+function km_previousImage($text="Previous",$class='',$id='')
 {
      global $photoblog;
      if($photoblog->_previd!='')
@@ -68,8 +81,17 @@ function km_previousImage($text="Previous",$id='',$class='')
           $link.= '>'.$text.'</a>';
           echo $link;
      }
+     return;
 }
-function km_nextImage($text="Next",$id='',$class='')
+
+/**
+ * Displays link to next image.
+ * @param string $text Text to be displayed in link.
+ * @param string $class CSS class to use.
+ * @param string $id Id of link.
+ * @return void
+ */
+function km_nextImage($text="Next",$class='',$id='')
 {
      global $photoblog;
      if($photoblog->_nextid!='')
@@ -82,6 +104,11 @@ function km_nextImage($text="Next",$id='',$class='')
      }
 }
 
+/**
+ * Displays current image's title.
+ * @param string $string Encapsulation string for title.
+ * @return void
+ */
 function km_imageTitle($string='%s')
 {
      /*
@@ -91,12 +118,24 @@ function km_imageTitle($string='%s')
      echo sprintf($string,$GLOBALS['imagetitle']);
 }
 
+/**
+ * Displays current image's text body.
+ * @param string $string Encapsulation string for body.
+ * @return void
+ */
 function km_imageBody($string="<p>%s</p>")
 {
      global $photoblog;
      echo sprintf($string,$photoblog->formatImageBody());
 }
 
+/**
+ * Displays current image's posting date.
+ * Time is formatted following PHP's definitions.
+ * @param string $format Date format. If no value is passed, will use configuration's value.
+ * @link http://www.php.net/date
+ * @return void
+ */
 function km_imageDate($format='')
 {
      global $photoblog;
@@ -104,6 +143,13 @@ function km_imageDate($format='')
      echo date($date_format,strtotime($photoblog->getField('datetime')));
 }
 
+/**
+ * Displays current image's posting time.
+ * Date is formatted following PHP's definitions.
+ * @param string $format Time format. If no value is passed, will use configuration's value.
+ * @link http://www.php.net/date
+ * @return void
+ */
 function km_imageTime($format='')
 {
      global $photoblog;
@@ -111,7 +157,14 @@ function km_imageTime($format='')
      echo date($time_format,strtotime($photoblog->getField('datetime')));
 }
 
-function km_Permalink($text="Permalink",$id='',$class='')
+/**
+ * Displays current image's permalink.
+ * @param string $text Text to be displayed in link.
+ * @param string $class CSS class to use for hyperlink.
+ * @param string $id Id of link
+ * @return void
+ */
+function km_Permalink($text="Permalink",$class='',$id='')
 {
 	global $photoblog;
      if($photoblog->_curid!='')
@@ -122,9 +175,16 @@ function km_Permalink($text="Permalink",$id='',$class='')
           $link.= '>'.$text.'</a>';
           echo $link;
      }
+     return;
 }
 
-function km_monthList($item='',$around='<li>%s</li>')
+/**
+ * Displays list of months where there are available posts..
+ * @param string $around HTML tags to encapsulate each element.
+ * @param string $item Code for item's count.
+ * @return void
+ */
+function km_monthList($around='<li>%s</li>',$item='')
 {
      global $photoblog;
      $months = $photoblog->getMonthList();
@@ -141,8 +201,13 @@ function km_monthList($item='',$around='<li>%s</li>')
      }
 
 }
-
-function km_imageCategories($id='',$class='')
+/**
+ * Displays list of categories which current image belongs to.
+ * @param string $class CSS class to use for hyperlink.
+ * @param string $id Id of link
+ * @return void
+ */
+function km_imageCategories($class='',$id='')
 {
      global $photoblog;
      $photoblog->catlist->moveStart();

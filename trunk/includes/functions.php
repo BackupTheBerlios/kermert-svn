@@ -30,19 +30,19 @@ function kmSettings($key='url')
 function getImageName()
 {
 	global $kermert;
-	return $kermert->imageslist->f('headline');
+	return $kermert->getField('headline');
 }
 function getImageFileName()
 {
 	global $kermert;
-	return $kermert->imageslist->f('image');
+	return $kermert->getField('image');
 }
 
 function getImageThumb()
 {
 	global $kermert;
-	if($kermert->imageslist->f('image')!='')
-		echo km_appurl.km_thumbsdir.'thumb_'.$kermert->imageslist->f('image');
+	if($kermert->getField('image')!='')
+		echo km_appurl.km_thumbsdir.'thumb_'.$kermert->getField('image');
 	else
 		echo km_appurl.'includes/stuff/notfound.png';
 }
@@ -50,19 +50,19 @@ function getImageThumb()
 function getImageBody()
 {
 	global $kermert;
-	return $kermert->imageslist->f('body');
+	return $kermert->getField('body');
 }
 
 function getImageId()
 {
 	global $kermert;
-	return $kermert->imageslist->f('id');
+	return $kermert->getField('id');
 }
 
 function getImageMode()
 {
      global $kermert;
-	return $kermert->imageslist->f('mode');
+	return $kermert->getField('mode');
 }
 
 function formatDate($date)

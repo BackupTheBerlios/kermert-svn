@@ -103,11 +103,17 @@ class kermert
 	{
 		return($this->imageslist->int_index);
 	}
+	
+	function loadCategories()
+	{
+		$sql = "SELECT * FROM ".km_dbprefix."_categories";
+		return($this->con->select($sql,'kmCategories'));
+	}
 
 	function movenext()
 	{
 		$this->imageslist->moveNext();
-		$this->loadImageCategories($this->imagesliste->f('id'));
+		$this->loadImageCategories($this->getField('id'));
 		return;
 	}
 
@@ -118,7 +124,7 @@ class kermert
 
 	function isVisible()
 	{
-	     if($this->imageslist->f('status')=='0')
+	     if($this->getField('status')==='0')
 	          return(false);
           return(true);
 	}

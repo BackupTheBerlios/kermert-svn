@@ -20,6 +20,15 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Element of administration part of application.
+ *
+ * This page manages available themes.
+ * Standards operations (adding, deleting) are available.
+ * @package Administration
+ * @subpackage GUI
+ */
+ 
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kmthemes.php');
 

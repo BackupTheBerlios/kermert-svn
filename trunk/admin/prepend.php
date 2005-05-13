@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * Element of administration part of application.
+ *
+ * This file initialize admin part. DB connection, config values...
+ * @package Administration
+ * @subpackage GUI
+ */
 session_start();
 include_once(dirname(__FILE__).'/../includes/classes/class.ini.file.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.mysql.php');

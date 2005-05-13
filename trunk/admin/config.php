@@ -20,6 +20,17 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Element of administration part of application.
+ *
+ * This page manages application configuration.
+ * All configuration settings will be stored in /conf/kermert.ini .
+ * @see IniFile
+ * @package Administration
+ * @subpackage GUI
+ */
+
+
 include_once(dirname(__FILE__).'/prepend.php');
 
 $op = (!empty($_REQUEST['op'])) ? $_REQUEST['op'] : 'params';

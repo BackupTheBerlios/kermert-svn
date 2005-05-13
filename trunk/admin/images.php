@@ -20,6 +20,10 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ *
+ */
+
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.wiki2xhtml.php');
 require_once(dirname(__FILE__).'/includes/Sajax.php');

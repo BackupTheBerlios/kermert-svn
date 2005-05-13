@@ -20,15 +20,49 @@
 #
 # ***** END LICENSE BLOCK *****
 
+/**
+ * Read-only extension.
+ *
+ * This class provides read-only methods to kermert class.
+ * Primary use: Front-End 
+ * @package Core
+ * @subpackage Extensions
+ */
+
 include_once(dirname(__FILE__).'/../classes/class.kermert.php');
 include_once(dirname(__FILE__).'/../classes/class.wiki2xhtml.php');
 
 class xkermert extends kermert
 {
+	
+	/**
+	 * ID of previous post 
+	 * @var string
+	 */
      var $_previd;
+     
+     /**
+	 * ID of next post 
+	 * @var string
+	 */
      var $_nextid;
+     
+     /**
+	 * ID of current post 
+	 * @var string
+	 */
      var $_curid;
+     
+     /**
+	 * Array of parameters passed to instance.
+	 * @var array
+	 */
      var $_params;
+     
+     /**
+	 * Current application mode
+	 * @var string
+	 */
      var $mode;
 
      function xkermert($con)

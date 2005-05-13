@@ -22,26 +22,14 @@
 
 include_once(dirname(__FILE__).'/class.mysql.php');
 
-class kmCategory extends Recordset
+class kmCategory
 {
-	var $categories = array();
-
-	function kmCategory($data='',$con='')
+	var $kermert;
+	
+	function setKermert(&$kermert)
 	{
-		if(is_array($data))
-		{
-			parent::RecordSet($data);
-		}
-		if($con!='')
-		{
-		     $this->con = $con;
-		}
+		$this->kermert = $kermert;
 	}
-
-     function loadAll()
-     {
-
-     }
 
 }
 ?>

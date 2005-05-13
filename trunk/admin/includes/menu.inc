@@ -13,6 +13,10 @@
 	<li><a href="./images.php?op=list">Gestion des images</a></li>
 	<li><a href="./images.php?op=operations">Opérations</a></li>
 </ul>
+<h3>Catégories</h3>
+<ul>
+	<li><a href="./categories.php">Gestion</a></li>
+</ul>
 <h3>Statistiques</h3>
 <ul>
 	<li><a href="./stats.php">Résumé</a></li>
@@ -20,9 +24,10 @@
 </ul>
 <h3>Configuration</h3>
 <ul>
-	<li><a href="./config.php">Paramètres</a></li>
+	<li><a href="./preferences.php">Préférences personnelles</a></li>
 	<li><a href="./users.php">Utilisateurs</a></li>
 	<li><a href="./themes.php">Thèmes</a></li>
+	<li><a href="./config.php">Paramètres</a></li>
 	<li><a href="./config.php?op=info">Informations</a></li>
 </ul>
 
