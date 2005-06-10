@@ -20,6 +20,8 @@
 #
 # ***** END LICENSE BLOCK *****
 
+include_once(dirname(__FILE__).'/class.kmCategory.php');
+
 class kermert
 {
 	var $con;
@@ -27,6 +29,19 @@ class kermert
 	function kermert(&$con)
 	{
 		$this->con = $con;
+	}
+
+	function getCategories($category_id='')
+	{
+	     $sql = 'SELECT * FROM '.km_dbprefix.'categories';
+	     if($category_id!='')
+	     {
+	          $sql.=' WHERE cat_id='.$category_id;
+	     }
+	     $cats = $this->con->select($sql,'kmCategory');
+	     $cats->setManager($this);
+	     return($cats);
+
 	}
 
 	function loadSingleImage($id)
@@ -71,7 +86,7 @@ class kermert
 
 
           echo $sql;
-          $this->imageslist = $this->con->select($sql,'kmImage');
+          $this->imageslist = $this->con->select($sql);
           echo $this->con->error();
 
 	}
@@ -103,17 +118,11 @@ class kermert
 	{
 		return($this->imageslist->int_index);
 	}
-	
-	function loadCategories()
-	{
-		$sql = "SELECT * FROM ".km_dbprefix."_categories";
-		return($this->con->select($sql,'kmCategories'));
-	}
 
 	function movenext()
 	{
 		$this->imageslist->moveNext();
-		$this->loadImageCategories($this->getField('id'));
+		$this->loadImageCategories($this->imagesliste->f('id'));
 		return;
 	}
 
@@ -124,7 +133,7 @@ class kermert
 
 	function isVisible()
 	{
-	     if($this->getField('status')==='0')
+	     if($this->imageslist->f('status')=='0')
 	          return(false);
           return(true);
 	}

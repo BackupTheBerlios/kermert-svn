@@ -22,14 +22,33 @@
 
 include_once(dirname(__FILE__).'/class.mysql.php');
 
-class kmCategory
+class kmCategory extends Recordset
 {
-	var $kermert;
-	
-	function setKermert(&$kermert)
-	{
-		$this->kermert = $kermert;
-	}
+     function setManager(&$kermert)
+     {
+          $this->kermert = $kermert;
+     }
 
+     function getTitle()
+     {
+          return($this->f('name'));
+     }
+
+     function getQualifiedUri($mode='full')
+     {
+          $separator = '?';
+          if(km_varmode=='path_info')
+               $separator = '/';
+
+          $script_uri = km_appurl.km_script.$separator;
+
+          if($mode=='full')
+               return($script_uri.$this->f('qualifieduri'));
+          return($this->f('qualifieduri'));
+     }
+
+     function getPostCount()
+     {
+     }
 }
 ?>
