@@ -30,13 +30,6 @@
 
 include_once(dirname(__FILE__).'/prepend.php');
 include_once(dirname(__FILE__).'/includes/classes/class.kmuser.php');
-//include_once(dirname(__FILE__).'/includes/wrappers/wrapper.kmuser.php');
-require_once(dirname(__FILE__).'/includes/Sajax.php');
-
-$sajax_remote_uri = './includes/wrappers/wrapper.kmuser.php';
-sajax_init();
-sajax_export("userList");
-sajax_handle_client_request();
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -47,18 +40,8 @@ sajax_handle_client_request();
 <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
 <title>Administration</title>
 <script type="text/javascript" src="./includes/tools.js"></script>
-<script type="text/javascript" src="./includes/sajax_extra.js"></script>
-<script language="javascript" type="text/javascript" src="./includes/sajax_functions.js"></script>
-<script language="javascript" type="text/javascript" src="./includes/wrappers/wrapper.kmuser.js"></script>
-<script language="javascript" type="text/javascript">
-<!--
-<?
-sajax_show_javascript();
-?>
--->
-</script>
 </head>
-<body onload="javascript:initPage();">
+<body>
 <table width="100%" class="Framework" cellspacing="0" cellpadding="0">
 <tr>
 <td colspan="2">

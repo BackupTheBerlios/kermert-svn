@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Element of administration part of application.
  *
@@ -7,7 +6,7 @@
  * @package Administration
  * @subpackage GUI
  */
-session_start();
+//session_start();
 include_once(dirname(__FILE__).'/../includes/classes/class.ini.file.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.mysql.php');
 include_once(dirname(__FILE__).'/../includes/classes/class.kermert.php');
